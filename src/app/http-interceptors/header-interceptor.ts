@@ -16,7 +16,9 @@ export class HeaderInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     // Clone the request to add the new header
     const clonedRequest = req.clone({
-      headers: req.headers.append('Authorization', 'Bearer 123'),
+      headers: req.headers
+        .append('Authorization', 'Bearer 123')
+        .append('Access-Control-Allow-Origin', '*'),
     });
     // Pass the cloned request instead of the original request to the next handle
     return next.handle(clonedRequest);
