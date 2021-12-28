@@ -11,4 +11,8 @@ import { environment } from '@environments/environment';
 })
 export class WinWheelService {
   constructor(private http: HttpClient) {}
+
+  getWinWheelData(type: string) {
+    return this.http.get(environment.apiURL, { params: { type } });
+  }
 }
