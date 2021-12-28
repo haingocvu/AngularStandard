@@ -1,7 +1,7 @@
 {
   "/*": {
     "target": "http://13.214.81.47:8081",
-    "secure": false,
-    "logLevel": "debug"
-  }
+    "secure": false
+  },
+  "changeOrigin": true
 }
