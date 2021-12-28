@@ -11,3 +11,9 @@ export interface Segment {
   obtainContent: string;
   color: string;
 }
+
+export interface SpinResult {
+  obtainSpinSegmentId: string;
+  remainingTurns: number;
+  rewards: Array<string>;
+}

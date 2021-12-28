@@ -1,4 +1,4 @@
-import { Result } from '@app/interfaces/http';
+import { Result } from '@app/interfaces/http.interface';
 import { RESPONSE_STATUS } from '@app/consts/appConstants';
 
 export function parseResponse<T>(
