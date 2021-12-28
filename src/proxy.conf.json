@@ -1,7 +1,8 @@
 {
-  "/*": {
+  "/my-hdsaison/*": {
     "target": "http://13.214.81.47:8081",
-    "secure": false
-  },
-  "changeOrigin": true
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
 }

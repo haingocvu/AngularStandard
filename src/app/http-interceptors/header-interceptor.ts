@@ -17,7 +17,10 @@ export class HeaderInterceptor implements HttpInterceptor {
     // Clone the request to add the new header
     const clonedRequest = req.clone({
       headers: req.headers
-        .append('Authorization', 'Bearer 123')
+        .append(
+          'Authorization',
+          'Basic ' + btoa('campaign_user:campaign!p@ssw0rd')
+        )
         .append('Access-Control-Allow-Origin', '*'),
     });
     // Pass the cloned request instead of the original request to the next handle

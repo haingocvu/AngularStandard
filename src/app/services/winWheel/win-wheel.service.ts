@@ -14,7 +14,7 @@ export class WinWheelService {
 
   getWinWheelData(type: string): Observable<Result<WinWheelData>> {
     return this.http.get<Result<WinWheelData>>(
-      environment.apiURL + '/my-hdsaison',
+      environment.apiURL + '/my-hdsaison/campaign',
       {
         params: { type },
       }
