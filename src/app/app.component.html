@@ -287,10 +287,18 @@
 </style>
 
 <!-- Toolbar -->
-<div id="tool-bar" role="toolbar">
+<!-- <div id="tool-bar" role="toolbar">
   <app-top-bar></app-top-bar>
 </div>
 
-<div id="main-content" role="main"></div>
+<div id="main-content" role="main"></div> -->
+
+<div class="bounds">
+  <div class="content" fxLayout="column" fxLayout.xs="column" fxFlexFill>
+    <div fxFlex="15" class="sec1" fxFlex.xs="55">first-section</div>
+    <div fxFlex="30" class="sec2">second-section</div>
+    <div fxFlex="55" class="sec3" fxFlex.xs="15">third-section</div>
+  </div>
+</div>
 
 <router-outlet></router-outlet>

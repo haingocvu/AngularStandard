@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
@@ -29,6 +30,7 @@ import { WinWheelEffect } from '@app/store/effects/win-wheel.effect';
     MatToolbarModule,
     MatIconModule,
     HttpClientModule,
+    FlexLayoutModule,
     StoreModule.forRoot({
       winWheelData: winWheelReducer,
     }),
