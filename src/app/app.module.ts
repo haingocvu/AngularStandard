@@ -19,9 +19,10 @@ import { HeaderInterceptor } from 'app/http-interceptors/header-interceptor';
 import { winWheelReducer } from '@app/store/reducers/win-wheel.reducer';
 import { environment } from '@environments/environment';
 import { WinWheelEffect } from '@app/store/effects/win-wheel.effect';
+import { WinWheelComponent } from './components/win-wheel/win-wheel.component';
 
 @NgModule({
-  declarations: [AppComponent, ExampleComponent, TopBarComponent],
+  declarations: [AppComponent, ExampleComponent, TopBarComponent, WinWheelComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
