@@ -29,15 +29,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.initialData();
-    this.store.dispatch(getWinWheelData());
   }
 
   initialData() {
-    this.winWheelService
-      .getActiveCampaignByType('lucky_wheel')
-      .pipe(untilDestroyed(this))
-      .subscribe((value) => {
-        parseResponse(value, (data) => console.log(data));
-      });
+    this.store.dispatch(getWinWheelData('lucky_wheel'));
   }
 }

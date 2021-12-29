@@ -7,6 +7,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
@@ -16,6 +17,7 @@ import { HeaderInterceptor } from 'app/http-interceptors/header-interceptor';
 
 import { winWheelReducer } from '@app/store/reducers/win-wheel.reducer';
 import { environment } from '@environments/environment';
+import { WinWheelEffect } from '@app/store/effects/win-wheel.effect';
 
 @NgModule({
   declarations: [AppComponent, ExampleComponent, TopBarComponent],
@@ -34,6 +36,7 @@ import { environment } from '@environments/environment';
       maxAge: 25,
       logOnly: environment.production,
     }),
+    EffectsModule.forRoot([WinWheelEffect]),
   ],
   providers: [
     {
