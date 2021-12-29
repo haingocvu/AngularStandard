@@ -1,31 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { WinWheelService } from '@app/services/winWheel/win-wheel.service';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-
-import { parseResponse } from '@app/utils/http.util';
 import { Observable } from 'rxjs';
 
 import { WinWheelData } from '@app/interfaces/win-wheel.interface';
 import { StoreInterface } from '@app/interfaces/store.interface';
 import { getWinWheelData } from '@app/store/actions/win-wheel.actions';
-@UntilDestroy()
+import { winWheelDataSelector } from '@app/store/selectors/win-wheel.selector';
+import { GenericReducerState } from '@app/interfaces/general-reducer-state.interface';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(
-    private winWheelService: WinWheelService,
-    private store: Store<StoreInterface>
-  ) {
-    this.winWheelData$ = this.store.select('winWheelData');
+  constructor(private store: Store<StoreInterface>) {
+    this.winWheelData$ = this.store.select(winWheelDataSelector);
+    this.winWheelData$.subscribe((data) => {
+      this.winWheelRawData = data;
+      console.log(this.winWheelRawData);
+    });
   }
 
   title = 'angularStandard';
 
-  winWheelData$: Observable<WinWheelData>;
+  winWheelData$: Observable<GenericReducerState<WinWheelData>>;
+  winWheelRawData: GenericReducerState<WinWheelData> | null = null;
 
   ngOnInit(): void {
     this.initialData();

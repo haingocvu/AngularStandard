@@ -7,9 +7,9 @@ import {
   getWinWheelDataReset,
 } from 'app/store/actions/win-wheel.actions';
 import { WinWheelData } from '@app/interfaces/win-wheel.interface';
-import { GeneralReducerState } from '@app/interfaces/general-reducer-state.interface';
+import { GenericReducerState } from '@app/interfaces/general-reducer-state.interface';
 
-export const initialState: GeneralReducerState<WinWheelData> = {
+export const initialState: GenericReducerState<WinWheelData> = {
   data: null,
   isLoading: false,
   errMsg: '',
