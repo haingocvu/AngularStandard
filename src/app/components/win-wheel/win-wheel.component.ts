@@ -1,4 +1,11 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+
+import { WinWheelData } from '@app/interfaces/win-wheel.interface';
+import { StoreInterface } from '@app/interfaces/store.interface';
+import { winWheelDataSelector } from '@app/store/selectors/win-wheel.selector';
+import { GenericReducerState } from '@app/interfaces/general-reducer-state.interface';
 declare let Winwheel: any;
 
 @Component({
@@ -7,13 +14,43 @@ declare let Winwheel: any;
   styleUrls: ['./win-wheel.component.scss'],
 })
 export class WinWheelComponent implements OnInit, AfterViewInit {
-  constructor() {}
+  constructor(private store: Store<StoreInterface>) {
+    this.winWheelData$ = this.store.select(winWheelDataSelector);
+    this.winWheelData$.subscribe((data) => {
+      this.winWheelRawData = data;
+      this.setUpWinWheel();
+      console.log(this.winWheelRawData);
+    });
+  }
 
+  winWheelData$: Observable<GenericReducerState<WinWheelData>>;
+  winWheelRawData: GenericReducerState<WinWheelData> | null = null;
   theWheel: any;
   wheelPower = 0;
   wheelSpinning = false;
   winningSegment: string = '';
   audio = new Audio('/assets/media/tick.mp3');
+
+  setUpWinWheel() {
+    if (!this.winWheelRawData?.isLoading && this.winWheelRawData?.data) {
+      debugger;
+      for (let i = 0; i < this.winWheelRawData.data.spinSegments.length; i++) {
+        const { id, color, segmentContent, obtainContent } =
+          this.winWheelRawData.data.spinSegments[i];
+        this.theWheel.addSegment(
+          {
+            id,
+            strokeStyle: 'transparent',
+            fillStyle: color,
+            text: segmentContent,
+            obtainContent,
+          },
+          i + 1
+        );
+      }
+      this.theWheel.draw();
+    }
+  }
 
   playSound() {
     // Stop and rewind the sound (stops it if already playing).
@@ -32,75 +69,10 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
       centerX: 201.5, // correctly position the wheel
       centerY: 207.5, // over the background.
       lineWidth: 2,
-      numSegments: 8,
+      numSegments: 0,
       textFontSize: 14,
       responsive: true, // This wheel is responsive!
-      segments: [
-        {
-          id: 'b91f1602-784b-46c5-9f63-21203381df10',
-          strokeStyle: 'transparent',
-          fillStyle: '#eae56f',
-          text: 'Không trúng',
-          obtainContent:
-            '<p style="margin-bottom: 0px;">Xin chúc Quý khách may mắn lần sau.<br></p>',
-        },
-        {
-          id: 'b52f12bf-5188-4509-9b91-5f601a028326',
-          strokeStyle: 'transparent',
-          fillStyle: '#89f26e',
-          text: '1$',
-          obtainContent:
-            '<p style="margin-bottom: 0px;">Xin chúc mừng Quý khách quay trúng&nbsp;<span style="font-weight: 700;">1$</span>.</p><p style="margin-bottom: 0px;">Vui lòng vào mục&nbsp;<span style="font-weight: 700;">Giỏ quà</span>&nbsp;để xem các phần thưởng.</p>',
-        },
-        {
-          id: 'b91f1602-784b-46c5-9f63-21203381df10',
-          strokeStyle: 'transparent',
-          fillStyle: '#eae56f',
-          text: 'Không trúng',
-          obtainContent:
-            '<p style="margin-bottom: 0px;">Xin chúc Quý khách may mắn lần sau.<br></p>',
-        },
-        {
-          id: 'b52f12bf-5188-4509-9b91-5f601a028326',
-          strokeStyle: 'transparent',
-          fillStyle: '#89f26e',
-          text: '1$',
-          obtainContent:
-            '<p style="margin-bottom: 0px;">Xin chúc mừng Quý khách quay trúng&nbsp;<span style="font-weight: 700;">1$</span>.</p><p style="margin-bottom: 0px;">Vui lòng vào mục&nbsp;<span style="font-weight: 700;">Giỏ quà</span>&nbsp;để xem các phần thưởng.</p>',
-        },
-        {
-          id: 'b91f1602-784b-46c5-9f63-21203381df10',
-          strokeStyle: 'transparent',
-          fillStyle: '#eae56f',
-          text: 'Không trúng',
-          obtainContent:
-            '<p style="margin-bottom: 0px;">Xin chúc Quý khách may mắn lần sau.<br></p>',
-        },
-        {
-          id: 'b52f12bf-5188-4509-9b91-5f601a028326',
-          strokeStyle: 'transparent',
-          fillStyle: '#89f26e',
-          text: '1$',
-          obtainContent:
-            '<p style="margin-bottom: 0px;">Xin chúc mừng Quý khách quay trúng&nbsp;<span style="font-weight: 700;">1$</span>.</p><p style="margin-bottom: 0px;">Vui lòng vào mục&nbsp;<span style="font-weight: 700;">Giỏ quà</span>&nbsp;để xem các phần thưởng.</p>',
-        },
-        {
-          id: 'b91f1602-784b-46c5-9f63-21203381df10',
-          strokeStyle: 'transparent',
-          fillStyle: '#eae56f',
-          text: 'Không trúng',
-          obtainContent:
-            '<p style="margin-bottom: 0px;">Xin chúc Quý khách may mắn lần sau.<br></p>',
-        },
-        {
-          id: 'b52f12bf-5188-4509-9b91-5f601a028326',
-          strokeStyle: 'transparent',
-          fillStyle: '#89f26e',
-          text: '1$',
-          obtainContent:
-            '<p style="margin-bottom: 0px;">Xin chúc mừng Quý khách quay trúng&nbsp;<span style="font-weight: 700;">1$</span>.</p><p style="margin-bottom: 0px;">Vui lòng vào mục&nbsp;<span style="font-weight: 700;">Giỏ quà</span>&nbsp;để xem các phần thưởng.</p>',
-        },
-      ],
+      segments: [],
       animation: {
         type: 'spinToStop',
         duration: 5,
@@ -135,8 +107,8 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
       } else if (this.wheelPower === 3) {
         this.theWheel.animation.spins = 15;
       }
+      this.theWheel.startAnimation();
+      this.wheelSpinning = true;
     }
-    this.theWheel.startAnimation();
-    this.wheelSpinning = true;
   }
 }
