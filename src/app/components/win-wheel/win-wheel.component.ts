@@ -13,7 +13,18 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
   wheelPower = 0;
   wheelSpinning = false;
   winningSegment: string = '';
+  audio = new Audio('/assets/media/tick.mp3');
 
+  playSound() {
+    // Stop and rewind the sound (stops it if already playing).
+    debugger;
+    console.log(this.audio);
+    this.audio.pause();
+    this.audio.currentTime = 0;
+
+    // Play the sound.
+    this.audio.play();
+  }
   ngAfterViewInit(): void {
     this.theWheel = new Winwheel({
       outerRadius: 173.5, // Use these three properties to
@@ -95,15 +106,24 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
         duration: 5,
         spins: 8,
         callbackFinished: this.alertPrize.bind(this),
+        callbackSound: () => this.playSound(), // Specify function to call when sound is to be triggered
       },
     });
   }
 
   ngOnInit(): void {}
 
+  resetWheel(): void {
+    this.theWheel.stopAnimation(false);
+    this.theWheel.rotationAngle = 0;
+    // this.theWheel.draw();
+    this.wheelSpinning = false;
+  }
+
   alertPrize(): void {
     this.winningSegment = this.theWheel.getIndicatedSegment().text;
     alert('You have won ' + this.theWheel.getIndicatedSegment().text);
+    this.resetWheel();
   }
 
   startSpin(): void {
