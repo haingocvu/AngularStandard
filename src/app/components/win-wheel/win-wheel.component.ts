@@ -2,12 +2,15 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { HttpHeaders } from '@angular/common/http';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 import { WinWheelModel } from '@app/interfaces/win-wheel.interface';
 import { StoreInterface } from '@app/interfaces/store.interface';
 import { winWheelDataSelector } from '@app/store/selectors/win-wheel.selector';
 import { GenericReducerState } from '@app/interfaces/general-reducer-state.interface';
 import { spinTheWheel } from '@app/store/actions/spin.actions';
+import { SpinModel } from '@app/interfaces/spin.interface';
+import { spinDataSelector } from '@app/store/selectors/spin.selector';
 declare let Winwheel: any;
 
 @Component({
@@ -16,17 +19,29 @@ declare let Winwheel: any;
   styleUrls: ['./win-wheel.component.scss'],
 })
 export class WinWheelComponent implements OnInit, AfterViewInit {
-  constructor(private store: Store<StoreInterface>) {
+  constructor(
+    private store: Store<StoreInterface>,
+    private spinner: NgxSpinnerService
+  ) {
     this.winWheelData$ = this.store.select(winWheelDataSelector);
+    this.spinData$ = this.store.select(spinDataSelector);
     this.winWheelData$.subscribe((data) => {
       this.winWheelRawData = data;
       this.setUpWinWheel();
       console.log(this.winWheelRawData);
     });
+    this.spinData$.subscribe((data) => {
+      this.spinRawData = data;
+      const { isLoading } = this.spinRawData;
+      if (!isLoading) this.spinner.hide();
+      this.showSpinResult();
+    });
   }
 
   winWheelData$: Observable<GenericReducerState<WinWheelModel>>;
   winWheelRawData: GenericReducerState<WinWheelModel> | null = null;
+  spinData$: Observable<GenericReducerState<SpinModel>>;
+  spinRawData: GenericReducerState<SpinModel> | null = null;
   theWheel: any;
   wheelPower = 0;
   wheelSpinning = false;
@@ -99,7 +114,13 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
   }
 
   startSpin(): void {
-    if (this.wheelSpinning === false) {
+    this.checkAvailable();
+  }
+
+  checkAvailable() {
+    const remainingTurns = this.spinRawData?.data?.remainingTurns;
+    debugger;
+    if (remainingTurns && !this.wheelSpinning) {
       if (this.wheelPower === 1) {
         this.theWheel.animation.spins = 3;
       } else if (this.wheelPower === 2) {
@@ -116,8 +137,29 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
             .append('X-Auth-Campaign-Version', '1'),
         })
       );
-      this.theWheel.startAnimation();
-      this.wheelSpinning = true;
+      this.spinner.show();
+    }
+  }
+
+  showSpinResult() {
+    const data = this.spinRawData?.data;
+    const isLoading = this.spinRawData?.isLoading;
+    if (!isLoading && data) {
+      const { obtainSpinSegmentId } = data;
+      const segmentIndex = this.winWheelRawData?.data?.spinSegments.findIndex(
+        (value) => value.id === obtainSpinSegmentId
+      );
+      if (segmentIndex && segmentIndex >= 0) {
+        // Get random angle inside specified segment of the wheel.
+        let stopAt = this.theWheel.getRandomForSegment(segmentIndex + 1);
+
+        // Important thing is to set the stopAngle of the animation before stating the spin.
+        this.theWheel.animation.stopAngle = stopAt;
+
+        // Start the spin animation here.
+        this.wheelSpinning = true;
+        this.theWheel.startAnimation();
+      }
     }
   }
 }

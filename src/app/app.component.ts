@@ -20,8 +20,8 @@ export class AppComponent implements OnInit {
   ) {
     this.winWheelData$ = this.store.select(winWheelDataSelector);
     this.winWheelData$.subscribe((data) => {
-      const { isLoading, data: wheelData } = data;
-      if (!isLoading && wheelData) {
+      const { isLoading } = data;
+      if (!isLoading) {
         this.spinner.hide();
       }
     });
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
   }
 
   initialData() {
-    this.spinner.show();
     this.store.dispatch(getWinWheelData('lucky_wheel'));
+    this.spinner.show();
   }
 }
