@@ -32,9 +32,9 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
     });
     this.spinData$.subscribe((data) => {
       this.spinRawData = data;
-      const { isLoading } = this.spinRawData;
+      const { isLoading, data: spinData } = this.spinRawData;
       if (!isLoading) this.spinner.hide();
-      this.showSpinResult();
+      if (!isLoading && spinData) this.showSpinResult();
     });
   }
 
@@ -134,7 +134,10 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
           headerConfig: new HttpHeaders()
             .append('X-Auth-Code', 'A1')
             .append('X-Auth-Phone', '0949939393')
-            .append('X-Auth-Campaign-Version', '1'),
+            .append(
+              'X-Auth-Campaign-Version',
+              this.winWheelRawData?.data?.version + '' || ''
+            ),
         })
       );
       this.spinner.show();
