@@ -1,4 +1,4 @@
-export interface GenericReducerState<T> {
+export interface IGenericReducerState<T> {
   data: T | null;
   isLoading: boolean;
   errMsg: string;

@@ -5,10 +5,10 @@ import {
   getWinWheelDataFailed,
   getWinWheelDataReset,
 } from 'app/store/actions/win-wheel.actions';
-import { WinWheelModel } from '@app/interfaces/win-wheel.interface';
-import { GenericReducerState } from '@app/interfaces/general-reducer-state.interface';
+import { IWinWheel } from '@app/interfaces/win-wheel.interface';
+import { IGenericReducerState } from '@app/interfaces/general-reducer-state.interface';
 
-export const initialState: GenericReducerState<WinWheelModel> = {
+export const initialState: IGenericReducerState<IWinWheel> = {
   data: null,
   isLoading: false,
   errMsg: '',

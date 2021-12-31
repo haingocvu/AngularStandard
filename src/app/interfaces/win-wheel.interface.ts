@@ -1,31 +1,25 @@
-export interface WinWheelModel {
+export interface IWinWheel {
   id: string;
   name: string;
   version: number;
   rules: string;
-  spinSegments: Array<Segment>;
-  remainingRewards: RemainingRewards;
+  spinSegments: Array<ISegment>;
+  remainingRewards: IRemainingRewards;
 }
 
-export interface Segment {
+export interface ISegment {
   id: string;
   segmentContent: string;
   obtainContent: string;
   color: string;
 }
 
-export interface SpinResult {
-  obtainSpinSegmentId: string;
-  remainingTurns: number;
-  rewards: Array<string>;
-}
-
-export interface RemainingRewards {
+export interface IRemainingRewards {
   totalQuantity: number;
-  details: Array<RewardInfo>;
+  details: Array<IRewardInfo>;
 }
 
-export interface RewardInfo {
+export interface IRewardInfo {
   reward: string;
   quantity: number;
 }

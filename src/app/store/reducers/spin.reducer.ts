@@ -5,10 +5,10 @@ import {
   spinTheWheelSuccess,
   spinTheWheelReset,
 } from 'app/store/actions/spin.actions';
-import { GenericReducerState } from '@app/interfaces/general-reducer-state.interface';
-import { SpinModel } from '@app/interfaces/spin.interface';
+import { IGenericReducerState } from '@app/interfaces/general-reducer-state.interface';
+import { ISpinResult } from '@app/interfaces/spin.interface';
 
-export const initialState: GenericReducerState<SpinModel> = {
+export const initialState: IGenericReducerState<ISpinResult> = {
   data: null,
   isLoading: false,
   errMsg: '',

@@ -1,11 +1,11 @@
 import { createSelector } from '@ngrx/store';
-import { StoreInterface } from '@app/interfaces/store.interface';
-import { WinWheelModel } from '@app/interfaces/win-wheel.interface';
-import { GenericReducerState } from '@app/interfaces/general-reducer-state.interface';
+import { IStoreState } from '@app/interfaces/store.interface';
+import { IWinWheel } from '@app/interfaces/win-wheel.interface';
+import { IGenericReducerState } from '@app/interfaces/general-reducer-state.interface';
 
-const selectWinWheelData = (state: StoreInterface) => state.winWheelData;
+const selectWinWheelData = (state: IStoreState) => state.winWheelData;
 
 export const winWheelDataSelector = createSelector(
   selectWinWheelData,
-  (state: GenericReducerState<WinWheelModel>) => state
+  (state: IGenericReducerState<IWinWheel>) => state
 );

@@ -1,11 +1,11 @@
 import { createSelector } from '@ngrx/store';
-import { StoreInterface } from '@app/interfaces/store.interface';
-import { SpinModel } from '@app/interfaces/spin.interface';
-import { GenericReducerState } from '@app/interfaces/general-reducer-state.interface';
+import { IStoreState } from '@app/interfaces/store.interface';
+import { ISpinResult } from '@app/interfaces/spin.interface';
+import { IGenericReducerState } from '@app/interfaces/general-reducer-state.interface';
 
-const selectSpinData = (state: StoreInterface) => state.spinData;
+const selectSpinData = (state: IStoreState) => state.spinData;
 
 export const spinDataSelector = createSelector(
   selectSpinData,
-  (state: GenericReducerState<SpinModel>) => state
+  (state: IGenericReducerState<ISpinResult>) => state
 );

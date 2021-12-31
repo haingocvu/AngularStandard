@@ -3,21 +3,21 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { IHttpResult } from '@app/interfaces/http.interface';
-import { ISpinResult } from '@app/interfaces/spin.interface';
+import { ICustomerInfo } from '@app/interfaces/customerInfo.interface';
 import { environment } from '@environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SpinService {
+export class CustomerInfoService {
   constructor(private http: HttpClient) {}
 
-  spin(
+  getCustomerInfo(
     campaignId: string,
     headerConfig: HttpHeaders
-  ): Observable<IHttpResult<ISpinResult>> {
-    return this.http.post<IHttpResult<ISpinResult>>(
-      `${environment.apiURL}/my-hdsaison/campaign/${campaignId}/spin`,
+  ): Observable<IHttpResult<ICustomerInfo>> {
+    return this.http.post<IHttpResult<ICustomerInfo>>(
+      `${environment.apiURL}/my-hdsaison/campaign/${campaignId}/spin-info`,
       null,
       { headers: headerConfig }
     );

@@ -23,6 +23,8 @@ import { WinWheelEffect } from '@app/store/effects/win-wheel.effect';
 import { WinWheelComponent } from './components/win-wheel/win-wheel.component';
 import { SpinEffect } from '@app/store/effects/spin.effect';
 import { spinReducer } from '@app/store/reducers/spin.reducer';
+import { customerInfoReducer } from '@app/store/reducers/customerInfo.reducer';
+import { CustomerInfoEffect } from '@app/store/effects/customerInfo.effect';
 
 @NgModule({
   declarations: [
@@ -43,12 +45,13 @@ import { spinReducer } from '@app/store/reducers/spin.reducer';
     StoreModule.forRoot({
       winWheelData: winWheelReducer,
       spinData: spinReducer,
+      customerInfoData: customerInfoReducer,
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
     }),
-    EffectsModule.forRoot([WinWheelEffect, SpinEffect]),
+    EffectsModule.forRoot([WinWheelEffect, SpinEffect, CustomerInfoEffect]),
     NgxSpinnerModule,
   ],
   providers: [

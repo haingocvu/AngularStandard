@@ -4,8 +4,8 @@ import { switchMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import { WinWheelService } from '@app/services/winWheel/win-wheel.service';
-import { WinWheelModel } from '@app/interfaces/win-wheel.interface';
-import { Result } from '@app/interfaces/http.interface';
+import { IWinWheel } from '@app/interfaces/win-wheel.interface';
+import { IHttpResult } from '@app/interfaces/http.interface';
 import { parseResponse } from '@app/utils/http.util';
 import {
   getWinWheelData,
@@ -26,7 +26,7 @@ export class WinWheelEffect {
         return this.winWheelService
           .getActiveCampaignByType(action.payload)
           .pipe(
-            map((winWheelDataRes: Result<WinWheelModel>) =>
+            map((winWheelDataRes: IHttpResult<IWinWheel>) =>
               getWinWheelDataSuccess(parseResponse(winWheelDataRes))
             ),
             catchError(() => of(getWinWheelDataFailed('load failed')))

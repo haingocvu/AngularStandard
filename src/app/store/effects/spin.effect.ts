@@ -4,14 +4,14 @@ import { switchMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import { SpinService } from '@app/services/spin/spin.service';
-import { Result } from '@app/interfaces/http.interface';
+import { IHttpResult } from '@app/interfaces/http.interface';
 import { parseResponse } from '@app/utils/http.util';
 import {
   spinTheWheel,
   spinTheWheelSuccess,
   spinTheWheelFailed,
 } from '@app/store/actions/spin.actions';
-import { SpinModel } from '@app/interfaces/spin.interface';
+import { ISpinResult } from '@app/interfaces/spin.interface';
 
 @Injectable()
 export class SpinEffect {
@@ -24,7 +24,7 @@ export class SpinEffect {
         return this.spinService
           .spin(action.payload.campaignId, action.payload.headerConfig)
           .pipe(
-            map((spinDataRes: Result<SpinModel>) =>
+            map((spinDataRes: IHttpResult<ISpinResult>) =>
               spinTheWheelSuccess(parseResponse(spinDataRes))
             ),
             catchError((err) => {

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
-import { Result } from '@app/interfaces/http.interface';
-import { WinWheelModel, SpinResult } from '@app/interfaces/win-wheel.interface';
+import { IHttpResult } from '@app/interfaces/http.interface';
+import { IWinWheel } from '@app/interfaces/win-wheel.interface';
 import { environment } from '@environments/environment';
 
 @Injectable({
@@ -12,23 +12,12 @@ import { environment } from '@environments/environment';
 export class WinWheelService {
   constructor(private http: HttpClient) {}
 
-  getActiveCampaignByType(type: string): Observable<Result<WinWheelModel>> {
-    return this.http.get<Result<WinWheelModel>>(
+  getActiveCampaignByType(type: string): Observable<IHttpResult<IWinWheel>> {
+    return this.http.get<IHttpResult<IWinWheel>>(
       environment.apiURL + '/my-hdsaison/campaign',
       {
         params: { type },
       }
-    );
-  }
-
-  spin(
-    campaignId: string,
-    headerConfig: HttpHeaders
-  ): Observable<Result<SpinResult>> {
-    return this.http.post<Result<SpinResult>>(
-      `${environment.apiURL}/my-hdsaison/campaign/${campaignId}/spin`,
-      null,
-      { headers: headerConfig }
     );
   }
 }

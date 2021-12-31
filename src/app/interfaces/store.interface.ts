@@ -1,8 +1,10 @@
-import { WinWheelModel } from '@app/interfaces/win-wheel.interface';
-import { GenericReducerState } from '@app/interfaces/general-reducer-state.interface';
-import { SpinModel } from '@app/interfaces/spin.interface';
+import { IWinWheel } from '@app/interfaces/win-wheel.interface';
+import { IGenericReducerState } from '@app/interfaces/general-reducer-state.interface';
+import { ISpinResult } from '@app/interfaces/spin.interface';
+import { ICustomerInfo } from '@app/interfaces/customerInfo.interface';
 
-export interface StoreInterface {
-  winWheelData: GenericReducerState<WinWheelModel>;
-  spinData: GenericReducerState<SpinModel>;
+export interface IStoreState {
+  winWheelData: IGenericReducerState<IWinWheel>;
+  spinData: IGenericReducerState<ISpinResult>;
+  customerInfoData: IGenericReducerState<ICustomerInfo>;
 }

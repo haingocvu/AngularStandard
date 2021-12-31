@@ -1,4 +1,4 @@
-export interface Result<T> {
+export interface IHttpResult<T> {
   status: string;
   data: T;
 }

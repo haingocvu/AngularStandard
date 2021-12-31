@@ -4,12 +4,12 @@ import { Store } from '@ngrx/store';
 import { HttpHeaders } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
 
-import { WinWheelModel } from '@app/interfaces/win-wheel.interface';
-import { StoreInterface } from '@app/interfaces/store.interface';
+import { IWinWheel } from '@app/interfaces/win-wheel.interface';
+import { IStoreState } from '@app/interfaces/store.interface';
 import { winWheelDataSelector } from '@app/store/selectors/win-wheel.selector';
-import { GenericReducerState } from '@app/interfaces/general-reducer-state.interface';
+import { IGenericReducerState } from '@app/interfaces/general-reducer-state.interface';
 import { spinTheWheel } from '@app/store/actions/spin.actions';
-import { SpinModel } from '@app/interfaces/spin.interface';
+import { ISpinResult } from '@app/interfaces/spin.interface';
 import { spinDataSelector } from '@app/store/selectors/spin.selector';
 declare let Winwheel: any;
 
@@ -20,7 +20,7 @@ declare let Winwheel: any;
 })
 export class WinWheelComponent implements OnInit, AfterViewInit {
   constructor(
-    private store: Store<StoreInterface>,
+    private store: Store<IStoreState>,
     private spinner: NgxSpinnerService
   ) {
     this.winWheelData$ = this.store.select(winWheelDataSelector);
@@ -38,10 +38,10 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
     });
   }
 
-  winWheelData$: Observable<GenericReducerState<WinWheelModel>>;
-  winWheelRawData: GenericReducerState<WinWheelModel> | null = null;
-  spinData$: Observable<GenericReducerState<SpinModel>>;
-  spinRawData: GenericReducerState<SpinModel> | null = null;
+  winWheelData$: Observable<IGenericReducerState<IWinWheel>>;
+  winWheelRawData: IGenericReducerState<IWinWheel> | null = null;
+  spinData$: Observable<IGenericReducerState<ISpinResult>>;
+  spinRawData: IGenericReducerState<ISpinResult> | null = null;
   theWheel: any;
   wheelPower = 0;
   wheelSpinning = false;
