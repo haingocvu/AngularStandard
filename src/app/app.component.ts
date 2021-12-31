@@ -4,7 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 
 import { getWinWheelData } from '@app/store/actions/win-wheel.actions';
-import { WinWheelData } from '@app/interfaces/win-wheel.interface';
+import { WinWheelModel } from '@app/interfaces/win-wheel.interface';
 import { StoreInterface } from '@app/interfaces/store.interface';
 import { winWheelDataSelector } from '@app/store/selectors/win-wheel.selector';
 import { GenericReducerState } from '@app/interfaces/general-reducer-state.interface';
@@ -21,7 +21,6 @@ export class AppComponent implements OnInit {
     this.winWheelData$ = this.store.select(winWheelDataSelector);
     this.winWheelData$.subscribe((data) => {
       const { isLoading, data: wheelData } = data;
-      debugger;
       if (!isLoading && wheelData) {
         this.spinner.hide();
       }
@@ -29,7 +28,7 @@ export class AppComponent implements OnInit {
   }
 
   title = 'angularStandard';
-  winWheelData$: Observable<GenericReducerState<WinWheelData>>;
+  winWheelData$: Observable<GenericReducerState<WinWheelModel>>;
 
   ngOnInit(): void {
     this.initialData();

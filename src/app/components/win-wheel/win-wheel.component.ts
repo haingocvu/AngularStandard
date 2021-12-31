@@ -1,11 +1,13 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { HttpHeaders } from '@angular/common/http';
 
-import { WinWheelData } from '@app/interfaces/win-wheel.interface';
+import { WinWheelModel } from '@app/interfaces/win-wheel.interface';
 import { StoreInterface } from '@app/interfaces/store.interface';
 import { winWheelDataSelector } from '@app/store/selectors/win-wheel.selector';
 import { GenericReducerState } from '@app/interfaces/general-reducer-state.interface';
+import { spinTheWheel } from '@app/store/actions/spin.actions';
 declare let Winwheel: any;
 
 @Component({
@@ -23,8 +25,8 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
     });
   }
 
-  winWheelData$: Observable<GenericReducerState<WinWheelData>>;
-  winWheelRawData: GenericReducerState<WinWheelData> | null = null;
+  winWheelData$: Observable<GenericReducerState<WinWheelModel>>;
+  winWheelRawData: GenericReducerState<WinWheelModel> | null = null;
   theWheel: any;
   wheelPower = 0;
   wheelSpinning = false;
@@ -33,7 +35,6 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
 
   setUpWinWheel() {
     if (!this.winWheelRawData?.isLoading && this.winWheelRawData?.data) {
-      debugger;
       for (let i = 0; i < this.winWheelRawData.data.spinSegments.length; i++) {
         const { id, color, segmentContent, obtainContent } =
           this.winWheelRawData.data.spinSegments[i];
@@ -54,7 +55,6 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
 
   playSound() {
     // Stop and rewind the sound (stops it if already playing).
-    debugger;
     console.log(this.audio);
     this.audio.pause();
     this.audio.currentTime = 0;
@@ -107,6 +107,15 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
       } else if (this.wheelPower === 3) {
         this.theWheel.animation.spins = 15;
       }
+      this.store.dispatch(
+        spinTheWheel({
+          campaignId: this.winWheelRawData?.data?.id,
+          headerConfig: new HttpHeaders()
+            .append('X-Auth-Code', 'A1')
+            .append('X-Auth-Phone', '0949939393')
+            .append('X-Auth-Campaign-Version', '1'),
+        })
+      );
       this.theWheel.startAnimation();
       this.wheelSpinning = true;
     }

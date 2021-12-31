@@ -1,8 +1,10 @@
-export interface WinWheelData {
+export interface WinWheelModel {
   id: string;
   name: string;
   version: number;
+  rules: string;
   spinSegments: Array<Segment>;
+  remainingRewards: RemainingRewards;
 }
 
 export interface Segment {
@@ -16,4 +18,14 @@ export interface SpinResult {
   obtainSpinSegmentId: string;
   remainingTurns: number;
   rewards: Array<string>;
+}
+
+export interface RemainingRewards {
+  totalQuantity: number;
+  details: Array<RewardInfo>;
+}
+
+export interface RewardInfo {
+  reward: string;
+  quantity: number;
 }

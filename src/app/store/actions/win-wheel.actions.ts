@@ -5,8 +5,8 @@ import {
   GET_WIN_WHEEL_DATA_SUCCESS,
   GET_WIN_WHEEL_DATA_FAILED,
   GET_WIN_WHEEL_DATA_RESET,
-} from '@app/consts/actionConstants';
-import { WinWheelData } from '@app/interfaces/win-wheel.interface';
+} from '@app/consts/winWheelActionConstants';
+import { WinWheelModel } from '@app/interfaces/win-wheel.interface';
 
 export const getWinWheelData = createAction(
   GET_WIN_WHEEL_DATA,
@@ -15,7 +15,7 @@ export const getWinWheelData = createAction(
 
 export const getWinWheelDataSuccess = createAction(
   GET_WIN_WHEEL_DATA_SUCCESS,
-  (payload: WinWheelData | null) => ({ payload })
+  (payload: WinWheelModel | null) => ({ payload })
 );
 
 export const getWinWheelDataFailed = createAction(

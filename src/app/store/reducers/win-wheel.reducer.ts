@@ -1,15 +1,14 @@
 import { createReducer, on } from '@ngrx/store';
 
 import {
-  getWinWheelData,
   getWinWheelDataSuccess,
   getWinWheelDataFailed,
   getWinWheelDataReset,
 } from 'app/store/actions/win-wheel.actions';
-import { WinWheelData } from '@app/interfaces/win-wheel.interface';
+import { WinWheelModel } from '@app/interfaces/win-wheel.interface';
 import { GenericReducerState } from '@app/interfaces/general-reducer-state.interface';
 
-export const initialState: GenericReducerState<WinWheelData> = {
+export const initialState: GenericReducerState<WinWheelModel> = {
   data: null,
   isLoading: false,
   errMsg: '',
