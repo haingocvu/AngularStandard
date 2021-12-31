@@ -70,7 +70,7 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
       centerY: 207.5, // over the background.
       lineWidth: 2,
       numSegments: 0,
-      textFontSize: 14,
+      textFontSize: 10,
       responsive: true, // This wheel is responsive!
       segments: [],
       animation: {

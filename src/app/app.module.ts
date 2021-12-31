@@ -9,6 +9,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
@@ -22,7 +23,12 @@ import { WinWheelEffect } from '@app/store/effects/win-wheel.effect';
 import { WinWheelComponent } from './components/win-wheel/win-wheel.component';
 
 @NgModule({
-  declarations: [AppComponent, ExampleComponent, TopBarComponent, WinWheelComponent],
+  declarations: [
+    AppComponent,
+    ExampleComponent,
+    TopBarComponent,
+    WinWheelComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -40,6 +46,7 @@ import { WinWheelComponent } from './components/win-wheel/win-wheel.component';
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([WinWheelEffect]),
+    NgxSpinnerModule,
   ],
   providers: [
     {

@@ -24,7 +24,6 @@
 }
 
 .content {
-  width: 100%;
   max-width: 414px;
   max-height: 896px;
   width: 100%;
@@ -44,4 +43,9 @@
   font-feature-settings: "liga" off;
   color: #ffffff;
   padding-top: 60px;
+}
+
+.loading {
+  color: white;
+  padding-top: 50px;
 }
