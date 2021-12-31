@@ -1,0 +1,32 @@
+.footer-card {
+  padding: 16px;
+  background: #ffffff;
+  box-shadow: 0px 40px 32px -24px rgba(15, 15, 15, 0.12);
+  border-radius: 16px;
+  width: 88%;
+  min-height: 80px;
+  margin: auto;
+}
+
+.title-left {
+  font-family: SF Pro Display;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  text-transform: lowercase;
+  margin-left: 10px;
+}
+
+.title-right {
+  font-family: SF Pro Display;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: right;
+  color: #e53c38;
+  text-transform: lowercase;
+  margin-right: 20px;
+}

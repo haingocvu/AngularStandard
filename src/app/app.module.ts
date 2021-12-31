@@ -10,6 +10,8 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { MatButtonModule } from '@angular/material/button';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
@@ -25,6 +27,7 @@ import { SpinEffect } from '@app/store/effects/spin.effect';
 import { spinReducer } from '@app/store/reducers/spin.reducer';
 import { customerInfoReducer } from '@app/store/reducers/customerInfo.reducer';
 import { CustomerInfoEffect } from '@app/store/effects/customerInfo.effect';
+import { FooterComponent } from '@app/components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,7 @@ import { CustomerInfoEffect } from '@app/store/effects/customerInfo.effect';
     ExampleComponent,
     TopBarComponent,
     WinWheelComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +57,8 @@ import { CustomerInfoEffect } from '@app/store/effects/customerInfo.effect';
     }),
     EffectsModule.forRoot([WinWheelEffect, SpinEffect, CustomerInfoEffect]),
     NgxSpinnerModule,
+    MatButtonModule,
+    NgScrollbarModule,
   ],
   providers: [
     {

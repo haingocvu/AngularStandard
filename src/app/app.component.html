@@ -11,7 +11,7 @@
   }
 </style>
 
-<div fxLayoutAlign="center" fxFlexFill>
+<div fxLayout="row" fxLayoutAlign="center" fxFlexFill>
   <div class="content" fxLayout="column">
     <div fxFlex="15" class="sec1">
       <div class="app-title">Vòng quay may mắn</div>
@@ -19,7 +19,16 @@
     <div fxFlex="60" class="sec2">
       <app-win-wheel></app-win-wheel>
     </div>
-    <div fxFlex="25" class="sec3">third-section</div>
+    <div
+      fxFlex="25"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      class="sec3"
+    >
+      <div fxFlexFill>
+        <app-footer></app-footer>
+      </div>
+    </div>
     <ngx-spinner
       [fullScreen]="false"
       type="ball-clip-rotate-multiple"

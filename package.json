@@ -27,6 +27,7 @@
     "@ngrx/effects": "^13.0.2",
     "@ngrx/store": "^13.0.2",
     "@ngrx/store-devtools": "^13.0.2",
+    "ngx-scrollbar": "^9.0.0",
     "ngx-spinner": "^13.0.0",
     "rxjs": "^7.4.0",
     "tslib": "^2.3.0",

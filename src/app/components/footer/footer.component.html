@@ -1,0 +1,21 @@
+<div
+  class="footer-card"
+  fxLayout="column"
+  fxLayoutAlign="center space-around"
+  fxLayoutGap="3px"
+>
+  <ng-scrollbar style="min-height: 50px">
+    <div
+      fxLayout="row"
+      fxLayoutAlign="space-between"
+      *ngFor="let i of [1, 2, 3, 4]"
+    >
+      <span class="title-left">chi vang</span>
+      <span class="title-right">200 giai</span>
+    </div>
+  </ng-scrollbar>
+
+  <button mat-raised-button color="accent" style="border-radius: 1000px">
+    Quay Ngay
+  </button>
+</div>
