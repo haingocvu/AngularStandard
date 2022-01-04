@@ -4,6 +4,13 @@
   fxLayoutAlign="center space-around"
   fxLayoutGap="3px"
 >
+  <div class="pb-5">
+    <span class="reward-item-right fs-18 mr-1">Còn</span>
+    <span class="reward-item-left fs-18 ml-1 mr-1">{{
+      winWheelRawData?.data?.remainingRewards?.totalQuantity
+    }}</span>
+    <span class="reward-item-right fs-18 ml-1">món quà</span>
+  </div>
   <ng-scrollbar style="min-height: 50px">
     <div
       class="reward-item"
@@ -13,8 +20,8 @@
         let rewardItem of winWheelRawData?.data?.remainingRewards?.details
       "
     >
-      <span class="reward-item-left">{{ rewardItem.quantity }}</span>
-      <span class="reward-item-right">{{ rewardItem.reward }}</span>
+      <span class="reward-item-left mr-1">{{ rewardItem.quantity }}</span>
+      <span class="reward-item-right ml-1">{{ rewardItem.reward }}</span>
     </div>
   </ng-scrollbar>
 

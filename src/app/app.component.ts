@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
       const { isLoading } = data;
       if (!isLoading) {
         this.spinner.hide();
+        this.isLoading = false;
         this.title = data.data?.name || 'Vòng quay may mắn';
       }
     });
@@ -30,6 +31,7 @@ export class AppComponent implements OnInit {
 
   title = 'Vòng quay may mắn';
   winWheelData$: Observable<IGenericReducerState<IWinWheel>>;
+  isLoading = true;
 
   ngOnInit(): void {
     this.initialData();
