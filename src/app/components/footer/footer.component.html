@@ -4,14 +4,14 @@
   fxLayoutAlign="center space-around"
   fxLayoutGap="3px"
 >
-  <div class="pb-5">
+  <div class="pb-4">
     <span class="reward-item-right fs-18 mr-1">Còn</span>
     <span class="reward-item-left fs-18 ml-1 mr-1">{{
       winWheelRawData?.data?.remainingRewards?.totalQuantity
     }}</span>
     <span class="reward-item-right fs-18 ml-1">món quà</span>
   </div>
-  <ng-scrollbar style="min-height: 50px">
+  <ng-scrollbar style="min-height: 62px">
     <div
       class="reward-item"
       fxLayout="row"
@@ -25,5 +25,5 @@
     </div>
   </ng-scrollbar>
 
-  <button mat-raised-button color="accent" class="footer-btn">Quay Ngay</button>
+  <button mat-raised-button color="accent" class="footer-btn">Quay ngay</button>
 </div>

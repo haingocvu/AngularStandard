@@ -19,7 +19,6 @@
 
 .sec2,
 .sec3 {
-  padding-top: 20px;
   text-align: center;
 }
 
@@ -35,14 +34,15 @@
 }
 
 .app-title {
-  font-family: SF Pro Display;
+  font-family: Inter;
   font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 24px;
-  font-feature-settings: "liga" off;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  align-items: center;
+  text-align: center;
   color: #ffffff;
-  padding-top: 60px;
+  padding-top: 40px;
 }
 
 .loading {
