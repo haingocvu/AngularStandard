@@ -8,7 +8,10 @@ import { IWinWheel } from '@app/interfaces/win-wheel.interface';
 import { IStoreState } from '@app/interfaces/store.interface';
 import { winWheelDataSelector } from '@app/store/selectors/win-wheel.selector';
 import { IGenericReducerState } from '@app/interfaces/general-reducer-state.interface';
-import { spinTheWheel } from '@app/store/actions/spin.actions';
+import {
+  spinTheWheel,
+  spinTheWheelReset,
+} from '@app/store/actions/spin.actions';
 import { ISpinResult } from '@app/interfaces/spin.interface';
 import { spinDataSelector } from '@app/store/selectors/spin.selector';
 import { customerInfoDataSelector } from '@app/store/selectors/customerInfo.selector';
@@ -128,9 +131,10 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
   }
 
   checkAvailable() {
-    const remainingTurns =
-      this.spinRawData?.data?.remainingTurns ||
-      this.customerInfoRawData?.data?.remainingTurns;
+    const isSpinEnd = this.spinRawData?.isLoaded;
+    const remainingTurns = isSpinEnd
+      ? this.spinRawData?.data?.remainingTurns
+      : this.customerInfoRawData?.data?.remainingTurns;
     debugger;
     if (remainingTurns && !this.wheelSpinning) {
       if (this.wheelPower === 1) {
@@ -140,6 +144,7 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
       } else if (this.wheelPower === 3) {
         this.theWheel.animation.spins = 15;
       }
+      this.store.dispatch(spinTheWheelReset());
       this.store.dispatch(
         spinTheWheel({
           campaignId: this.winWheelRawData?.data?.id,

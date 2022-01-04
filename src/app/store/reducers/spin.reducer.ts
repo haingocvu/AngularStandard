@@ -12,6 +12,7 @@ export const initialState: IGenericReducerState<ISpinResult> = {
   data: null,
   isLoading: false,
   errMsg: '',
+  isLoaded: false,
 };
 
 const _spinReducer = createReducer(
@@ -21,12 +22,14 @@ const _spinReducer = createReducer(
     isLoading: initialState.isLoading,
     errMsg: initialState.errMsg,
     data: action.payload,
+    isLoaded: true,
   })),
   on(spinTheWheelFailed, (state, action) => ({
     ...state,
     isLoading: initialState.isLoading,
     errMsg: action.payload,
     data: initialState.data,
+    isLoaded: true,
   })),
   on(spinTheWheelReset, () => ({
     ...initialState,

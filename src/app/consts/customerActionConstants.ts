@@ -1,5 +1,7 @@
 export const GET_CUSTOMER_INFO = '[App Component] getCustomerInfo';
 
+export const GET_CUSTOMER_INFO_START = '[Login Component] getCustomerInfoStart';
+
 export const GET_CUSTOMER_INFO_SUCCESS =
   '[App Component] getCustomerInfoSuccess';
 

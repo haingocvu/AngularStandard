@@ -8,7 +8,10 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { IWinWheel } from '@app/interfaces/win-wheel.interface';
 import { IStoreState } from '@app/interfaces/store.interface';
-import { getCustomerInfo } from '@app/store/actions/customerInfo.actions';
+import {
+  getCustomerInfo,
+  getCustomerInfoStart,
+} from '@app/store/actions/customerInfo.actions';
 
 import { winWheelDataSelector } from '@app/store/selectors/win-wheel.selector';
 import { IGenericReducerState } from '@app/interfaces/general-reducer-state.interface';
@@ -40,9 +43,10 @@ export class SignInComponent implements OnInit {
 
     this.customerInfo$ = this.store.select(customerInfoDataSelector);
     this.customerInfo$.subscribe((data) => {
-      const { isLoading } = data;
-      if (!isLoading) {
-        this.spinner.hide();
+      debugger;
+      const { isLoading, isLoaded } = data;
+      if (!isLoading && isLoaded) {
+        // this.spinner.hide();
         this.dialog.closeAll();
         this.store.dispatch(saveLoginInfo(this._frm.value));
       }
@@ -71,6 +75,7 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {}
 
   getData(phone?: any, contract?: any) {
+    this.store.dispatch(getCustomerInfoStart());
     this.store.dispatch(
       getCustomerInfo({
         campaignId: this.winWheelRawData?.data?.id,
@@ -79,6 +84,6 @@ export class SignInComponent implements OnInit {
           .append('X-Auth-Phone', phone),
       })
     );
-    this.spinner.show();
+    // this.spinner.show();
   }
 }
