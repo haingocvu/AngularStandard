@@ -41,10 +41,13 @@ const _customerInfoReducer = createReducer(
   on(getCustomerInfoReset, () => ({
     ...initialState,
   })),
-  on(saveLoginInfo, (state, action) => ({
-    ...state,
-    loginInfo: action.payload,
-  }))
+  on(saveLoginInfo, (state, action) => {
+    debugger;
+    return {
+      ...state,
+      loginInfo: action.payload,
+    };
+  })
 );
 
 export function customerInfoReducer(state: any, action: any) {
