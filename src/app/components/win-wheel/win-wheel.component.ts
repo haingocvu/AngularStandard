@@ -11,6 +11,9 @@ import { IGenericReducerState } from '@app/interfaces/general-reducer-state.inte
 import { spinTheWheel } from '@app/store/actions/spin.actions';
 import { ISpinResult } from '@app/interfaces/spin.interface';
 import { spinDataSelector } from '@app/store/selectors/spin.selector';
+import { customerInfoDataSelector } from '@app/store/selectors/customerInfo.selector';
+import { ICustomerReducerState } from '@app/interfaces/customerInfo.interface';
+
 declare let Winwheel: any;
 
 @Component({
@@ -36,12 +39,19 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
       if (!isLoading) this.spinner.hide();
       if (!isLoading && spinData) this.showSpinResult();
     });
+
+    this.customerInfo$ = this.store.select(customerInfoDataSelector);
+    this.customerInfo$.subscribe((data) => {
+      this.customerInfoRawData = data;
+    });
   }
 
   winWheelData$: Observable<IGenericReducerState<IWinWheel>>;
   winWheelRawData: IGenericReducerState<IWinWheel> | null = null;
   spinData$: Observable<IGenericReducerState<ISpinResult>>;
   spinRawData: IGenericReducerState<ISpinResult> | null = null;
+  customerInfo$: Observable<ICustomerReducerState>;
+  customerInfoRawData: ICustomerReducerState | null = null;
   theWheel: any;
   wheelPower = 0;
   wheelSpinning = false;
@@ -118,7 +128,9 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
   }
 
   checkAvailable() {
-    const remainingTurns = this.spinRawData?.data?.remainingTurns;
+    const remainingTurns =
+      this.spinRawData?.data?.remainingTurns ||
+      this.customerInfoRawData?.data?.remainingTurns;
     debugger;
     if (remainingTurns && !this.wheelSpinning) {
       if (this.wheelPower === 1) {
@@ -132,8 +144,14 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
         spinTheWheel({
           campaignId: this.winWheelRawData?.data?.id,
           headerConfig: new HttpHeaders()
-            .append('X-Auth-Code', 'A1')
-            .append('X-Auth-Phone', '0949939393')
+            .append(
+              'X-Auth-Code',
+              this.customerInfoRawData?.loginInfo?.contractNumber + '' || ''
+            )
+            .append(
+              'X-Auth-Phone',
+              this.customerInfoRawData?.loginInfo?.phoneNumber + '' || ''
+            )
             .append(
               'X-Auth-Campaign-Version',
               this.winWheelRawData?.data?.version + '' || ''

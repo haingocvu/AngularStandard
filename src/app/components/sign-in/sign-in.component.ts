@@ -15,6 +15,7 @@ import { IGenericReducerState } from '@app/interfaces/general-reducer-state.inte
 import { ICustomerInfo } from '@app/interfaces/customerInfo.interface';
 
 import { customerInfoDataSelector } from '@app/store/selectors/customerInfo.selector';
+import { saveLoginInfo } from '@app/store/actions/customerInfo.actions';
 
 @Component({
   selector: 'app-sign-in',
@@ -43,6 +44,7 @@ export class SignInComponent implements OnInit {
       if (!isLoading) {
         this.spinner.hide();
         this.dialog.closeAll();
+        this.store.dispatch(saveLoginInfo(this._frm.value));
       }
     });
 

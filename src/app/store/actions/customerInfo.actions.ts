@@ -5,6 +5,7 @@ import {
   GET_CUSTOMER_INFO_SUCCESS,
   GET_CUSTOMER_INFO_FAILED,
   GET_CUSTOMER_INFO_RESET,
+  SAVE_LOGIN_INFO,
 } from '@app/consts/customerActionConstants';
 
 export const getCustomerInfo = createAction(
@@ -25,3 +26,13 @@ export const getCustomerInfoFailed = createAction(
 );
 
 export const getCustomerInfoReset = createAction(GET_CUSTOMER_INFO_RESET);
+
+export const saveLoginInfo = createAction(
+  SAVE_LOGIN_INFO,
+  (payload: {
+    phoneNumber: string | undefined;
+    contractNumber: string | undefined;
+  }) => ({
+    payload,
+  })
+);

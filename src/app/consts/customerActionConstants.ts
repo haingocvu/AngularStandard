@@ -6,3 +6,5 @@ export const GET_CUSTOMER_INFO_SUCCESS =
 export const GET_CUSTOMER_INFO_FAILED = '[App Component] getCustomerInfoFailed';
 
 export const GET_CUSTOMER_INFO_RESET = '[App Component] getCustomerInfoReset';
+
+export const SAVE_LOGIN_INFO = '[Login Component] saveLoginInfo';

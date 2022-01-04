@@ -4,14 +4,16 @@ import {
   getCustomerInfoSuccess,
   getCustomerInfoFailed,
   getCustomerInfoReset,
+  saveLoginInfo,
 } from 'app/store/actions/customerInfo.actions';
-import { IGenericReducerState } from '@app/interfaces/general-reducer-state.interface';
-import { ICustomerInfo } from '@app/interfaces/customerInfo.interface';
 
-export const initialState: IGenericReducerState<ICustomerInfo> = {
+import { ICustomerReducerState } from '@app/interfaces/customerInfo.interface';
+
+export const initialState: ICustomerReducerState = {
   data: null,
   isLoading: false,
   errMsg: '',
+  loginInfo: null,
 };
 
 const _customerInfoReducer = createReducer(
@@ -30,6 +32,10 @@ const _customerInfoReducer = createReducer(
   })),
   on(getCustomerInfoReset, () => ({
     ...initialState,
+  })),
+  on(saveLoginInfo, (state, action) => ({
+    ...state,
+    loginInfo: action.payload,
   }))
 );
 

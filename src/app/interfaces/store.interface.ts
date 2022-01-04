@@ -1,10 +1,10 @@
 import { IWinWheel } from '@app/interfaces/win-wheel.interface';
 import { IGenericReducerState } from '@app/interfaces/general-reducer-state.interface';
 import { ISpinResult } from '@app/interfaces/spin.interface';
-import { ICustomerInfo } from '@app/interfaces/customerInfo.interface';
+import { ICustomerReducerState } from '@app/interfaces/customerInfo.interface';
 
 export interface IStoreState {
   winWheelData: IGenericReducerState<IWinWheel>;
   spinData: IGenericReducerState<ISpinResult>;
-  customerInfoData: IGenericReducerState<ICustomerInfo>;
+  customerInfoData: ICustomerReducerState;
 }
