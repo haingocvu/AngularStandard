@@ -46,9 +46,8 @@ export class SignInComponent implements OnInit {
       debugger;
       const { isLoading, isLoaded } = data;
       if (!isLoading && isLoaded) {
-        // this.spinner.hide();
+        this.spinner.hide();
         this.dialog.closeAll();
-        this.store.dispatch(saveLoginInfo(this._frm.value));
       }
     });
 
@@ -69,6 +68,7 @@ export class SignInComponent implements OnInit {
   handleSubmit() {
     const { invalid, value } = this._frm;
     if (invalid) return;
+    this.store.dispatch(saveLoginInfo(value));
     this.getData(value?.phoneNumber, value?.contractNumber);
   }
 
@@ -84,6 +84,6 @@ export class SignInComponent implements OnInit {
           .append('X-Auth-Phone', phone),
       })
     );
-    // this.spinner.show();
+    this.spinner.show();
   }
 }
