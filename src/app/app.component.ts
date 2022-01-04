@@ -23,11 +23,12 @@ export class AppComponent implements OnInit {
       const { isLoading } = data;
       if (!isLoading) {
         this.spinner.hide();
+        this.title = data.data?.name || 'Vòng quay may mắn';
       }
     });
   }
 
-  title = 'angularStandard';
+  title = 'Vòng quay may mắn';
   winWheelData$: Observable<IGenericReducerState<IWinWheel>>;
 
   ngOnInit(): void {

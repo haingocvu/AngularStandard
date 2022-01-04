@@ -6,16 +6,17 @@
 >
   <ng-scrollbar style="min-height: 50px">
     <div
+      class="reward-item"
       fxLayout="row"
-      fxLayoutAlign="space-between"
-      *ngFor="let i of [1, 2, 3, 4]"
+      fxLayoutAlign="center center"
+      *ngFor="
+        let rewardItem of winWheelRawData?.data?.remainingRewards?.details
+      "
     >
-      <span class="title-left">chi vang</span>
-      <span class="title-right">200 giai</span>
+      <span class="reward-item-left">{{ rewardItem.quantity }}</span>
+      <span class="reward-item-right">{{ rewardItem.reward }}</span>
     </div>
   </ng-scrollbar>
 
-  <button mat-raised-button color="accent" style="border-radius: 1000px">
-    Quay Ngay
-  </button>
+  <button mat-raised-button color="accent" class="footer-btn">Quay Ngay</button>
 </div>

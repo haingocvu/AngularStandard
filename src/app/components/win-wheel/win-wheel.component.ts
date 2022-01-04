@@ -79,10 +79,10 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit(): void {
     this.theWheel = new Winwheel({
-      outerRadius: 173.5, // Use these three properties to
-      innerRadius: 27.5, // Set inner radius to make wheel hollow.
-      centerX: 201.5, // correctly position the wheel
-      centerY: 207.5, // over the background.
+      outerRadius: 154, // Use these three properties to
+      innerRadius: 34, // Set inner radius to make wheel hollow.
+      centerX: 200.8, // correctly position the wheel
+      centerY: 225, // over the background.
       lineWidth: 2,
       numSegments: 0,
       textFontSize: 10,
