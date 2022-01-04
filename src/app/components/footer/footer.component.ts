@@ -11,7 +11,8 @@ import { IGenericReducerState } from '@app/interfaces/general-reducer-state.inte
 import { SignInComponent } from '@app/components/sign-in/sign-in.component';
 import { customerInfoDataSelector } from '@app/store/selectors/customerInfo.selector';
 import { ICustomerInfo } from '@app/interfaces/customerInfo.interface';
-
+import { ISpinResult } from '@app/interfaces/spin.interface';
+import { spinDataSelector } from '@app/store/selectors/spin.selector';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -22,6 +23,8 @@ export class FooterComponent implements OnInit {
   winWheelRawData: IGenericReducerState<IWinWheel> | null = null;
   customerInfo$: Observable<IGenericReducerState<ICustomerInfo>>;
   customerInfoRawData: IGenericReducerState<ICustomerInfo> | null = null;
+  spinData$: Observable<IGenericReducerState<ISpinResult>>;
+  spinRawData: IGenericReducerState<ISpinResult> | null = null;
 
   constructor(private store: Store<IStoreState>, public dialog: MatDialog) {
     this.winWheelData$ = this.store.select(winWheelDataSelector);
@@ -32,6 +35,11 @@ export class FooterComponent implements OnInit {
     this.customerInfo$ = this.store.select(customerInfoDataSelector);
     this.customerInfo$.subscribe((data) => {
       this.customerInfoRawData = data;
+    });
+
+    this.spinData$ = this.store.select(spinDataSelector);
+    this.spinData$.subscribe((data) => {
+      this.spinRawData = data;
     });
   }
 
@@ -56,7 +64,10 @@ export class FooterComponent implements OnInit {
   }
 
   get getRemainingTurns() {
-    return this.customerInfoRawData?.data?.remainingTurns;
+    const fromSpinApi =
+      this.spinRawData?.isLoaded && this.spinRawData.data?.remainingTurns;
+    const fromCustomerInfo = this.customerInfoRawData?.data?.remainingTurns;
+    return fromSpinApi || fromCustomerInfo;
   }
 
   ngOnInit(): void {}
