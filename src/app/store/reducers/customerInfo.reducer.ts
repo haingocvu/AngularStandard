@@ -24,13 +24,16 @@ const _customerInfoReducer = createReducer(
     ...initialState,
     isLoading: true,
   })),
-  on(getCustomerInfoSuccess, (state, action) => ({
-    ...state,
-    isLoading: initialState.isLoading,
-    errMsg: initialState.errMsg,
-    data: action.payload,
-    isLoaded: true,
-  })),
+  on(getCustomerInfoSuccess, (state, action) => {
+    debugger;
+    return {
+      ...state,
+      isLoading: initialState.isLoading,
+      errMsg: initialState.errMsg,
+      data: action.payload,
+      isLoaded: true,
+    };
+  }),
   on(getCustomerInfoFailed, (state, action) => ({
     ...state,
     isLoading: initialState.isLoading,

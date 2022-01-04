@@ -68,7 +68,6 @@ export class SignInComponent implements OnInit {
   handleSubmit() {
     const { invalid, value } = this._frm;
     if (invalid) return;
-    this.store.dispatch(saveLoginInfo(value));
     this.getData(value?.phoneNumber, value?.contractNumber);
   }
 
@@ -76,6 +75,9 @@ export class SignInComponent implements OnInit {
 
   getData(phone?: any, contract?: any) {
     this.store.dispatch(getCustomerInfoStart());
+    this.store.dispatch(
+      saveLoginInfo({ phoneNumber: phone, contractNumber: contract })
+    );
     this.store.dispatch(
       getCustomerInfo({
         campaignId: this.winWheelRawData?.data?.id,
