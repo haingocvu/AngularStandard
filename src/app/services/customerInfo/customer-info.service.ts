@@ -16,9 +16,8 @@ export class CustomerInfoService {
     campaignId: string,
     headerConfig: HttpHeaders
   ): Observable<IHttpResult<ICustomerInfo>> {
-    return this.http.post<IHttpResult<ICustomerInfo>>(
+    return this.http.get<IHttpResult<ICustomerInfo>>(
       `${environment.apiURL}/my-hdsaison/campaign/${campaignId}/spin-info`,
-      null,
       { headers: headerConfig }
     );
   }

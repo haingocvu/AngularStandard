@@ -12,6 +12,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
@@ -28,6 +31,7 @@ import { spinReducer } from '@app/store/reducers/spin.reducer';
 import { customerInfoReducer } from '@app/store/reducers/customerInfo.reducer';
 import { CustomerInfoEffect } from '@app/store/effects/customerInfo.effect';
 import { FooterComponent } from '@app/components/footer/footer.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +40,7 @@ import { FooterComponent } from '@app/components/footer/footer.component';
     TopBarComponent,
     WinWheelComponent,
     FooterComponent,
+    SignInComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +64,9 @@ import { FooterComponent } from '@app/components/footer/footer.component';
     NgxSpinnerModule,
     MatButtonModule,
     NgScrollbarModule,
+    MatDialogModule,
+    MatInputModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {

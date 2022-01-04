@@ -1,0 +1,29 @@
+<mat-dialog-content>
+  <form [formGroup]="_frm" (ngSubmit)="handleSubmit()">
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <mat-form-field appearance="outline">
+        <mat-label>Số điện thoại</mat-label>
+        <input type="text" matInput formControlName="phoneNumber" required />
+        <mat-error *ngIf="phoneNumber?.hasError('required')">
+          Số điện thoại là <strong>bắt buộc</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Số hợp đồng</mat-label>
+        <input type="text" matInput formControlName="contractNumber" required />
+        <mat-error *ngIf="contractNumber?.hasError('required')">
+          Số hợp đồng là <strong>bắt buộc</strong>
+        </mat-error>
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="accent"
+        class="sign-in-btn"
+        type="submit"
+        fxFlexFill
+      >
+        Xác nhận
+      </button>
+    </div>
+  </form>
+</mat-dialog-content>
