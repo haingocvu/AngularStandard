@@ -126,7 +126,7 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
     this.resetWheel();
   }
 
-  startSpin(): void {
+  public startSpin(): void {
     this.checkAvailable();
   }
 
