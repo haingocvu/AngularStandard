@@ -14,3 +14,8 @@ export const winWheelRulesSelector = createSelector(
   selectWinWheelData,
   (state: IGenericReducerState<IWinWheel>) => state.data?.rules
 );
+
+export const campaignNameSelector = createSelector(
+  selectWinWheelData,
+  (state: IGenericReducerState<IWinWheel>) => state.data?.name
+);
