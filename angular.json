@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angularStandard": {
+    "luckyDraw": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -76,10 +76,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angularStandard:build:production"
+              "browserTarget": "luckyDraw:build:production"
             },
             "development": {
-              "browserTarget": "angularStandard:build:development",
+              "browserTarget": "luckyDraw:build:development",
               "proxyConfig": "src/proxy.conf.json"
             }
           },
@@ -88,7 +88,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angularStandard:build"
+            "browserTarget": "luckyDraw:build"
           }
         },
         "test": {
@@ -110,5 +110,5 @@
       }
     }
   },
-  "defaultProject": "angularStandard"
+  "defaultProject": "luckyDraw"
 }
