@@ -9,6 +9,6 @@ export class MessageService {
   currentMessage = this.messageSource.asObservable();
   constructor() {}
   changeMessage(message: string) {
-    this.messageSource.next(message);
+    this.messageSource.next(message + Math.random());
   }
 }

@@ -16,6 +16,7 @@ import { ISpinResult } from '@app/interfaces/spin.interface';
 import { spinDataSelector } from '@app/store/selectors/spin.selector';
 import { customerInfoDataSelector } from '@app/store/selectors/customerInfo.selector';
 import { ICustomerReducerState } from '@app/interfaces/customerInfo.interface';
+import { MessageService } from '@app/services/message/message.service';
 
 declare let Winwheel: any;
 
@@ -27,7 +28,8 @@ declare let Winwheel: any;
 export class WinWheelComponent implements OnInit, AfterViewInit {
   constructor(
     private store: Store<IStoreState>,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private messageService: MessageService
   ) {
     this.winWheelData$ = this.store.select(winWheelDataSelector);
     this.spinData$ = this.store.select(spinDataSelector);
@@ -46,6 +48,10 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
     this.customerInfo$ = this.store.select(customerInfoDataSelector);
     this.customerInfo$.subscribe((data) => {
       this.customerInfoRawData = data;
+    });
+
+    this.messageService.currentMessage.subscribe((message) => {
+      this.startSpin();
     });
   }
 

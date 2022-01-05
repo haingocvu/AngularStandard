@@ -13,6 +13,7 @@ import { customerInfoDataSelector } from '@app/store/selectors/customerInfo.sele
 import { ICustomerInfo } from '@app/interfaces/customerInfo.interface';
 import { ISpinResult } from '@app/interfaces/spin.interface';
 import { spinDataSelector } from '@app/store/selectors/spin.selector';
+import { MessageService } from '@app/services/message/message.service';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -26,7 +27,11 @@ export class FooterComponent implements OnInit {
   spinData$: Observable<IGenericReducerState<ISpinResult>>;
   spinRawData: IGenericReducerState<ISpinResult> | null = null;
 
-  constructor(private store: Store<IStoreState>, public dialog: MatDialog) {
+  constructor(
+    private store: Store<IStoreState>,
+    public dialog: MatDialog,
+    private messageService: MessageService
+  ) {
     this.winWheelData$ = this.store.select(winWheelDataSelector);
     this.winWheelData$.subscribe((data) => {
       this.winWheelRawData = data;
@@ -44,18 +49,24 @@ export class FooterComponent implements OnInit {
   }
 
   openDialogSignIn() {
+    // authentication
+    const dialogRef = this.dialog.open(SignInComponent);
+    dialogRef.afterClosed().subscribe(() => {
+      console.log(`success signin`);
+    });
+  }
+
+  startSpin() {
     const isLoading = this.customerInfoRawData?.isLoading;
     const rawData = this.customerInfoRawData?.data;
 
     if (!isLoading && rawData) {
-      // spin the wheel
-      console.log('spin now');
+      // spin the wheel using message service
+      console.log('spinning');
+      this.messageService.changeMessage('spin now');
     } else {
       // authentication
-      const dialogRef = this.dialog.open(SignInComponent);
-      dialogRef.afterClosed().subscribe(() => {
-        console.log(`success signin`);
-      });
+      this.openDialogSignIn();
     }
   }
 
