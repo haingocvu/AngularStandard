@@ -2,7 +2,7 @@
   class="footer-card"
   fxLayout="column"
   fxLayoutAlign="center space-around"
-  fxLayoutGap="3px"
+  fxLayoutGap="1px"
 >
   <div *ngIf="isShowRemainingTurns">
     <div fxLayout="row" fxLayoutAlign="space-between" fxFlexFill>
@@ -39,6 +39,14 @@
     </div>
   </ng-scrollbar>
 
+  <button
+    mat-raised-button
+    color="accent"
+    class="footer-btn-invert"
+    (click)="openRulesDialog()"
+  >
+    Thể lệ chương trình
+  </button>
   <button
     mat-raised-button
     color="accent"

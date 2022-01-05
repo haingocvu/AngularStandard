@@ -14,6 +14,7 @@ import { ICustomerInfo } from '@app/interfaces/customerInfo.interface';
 import { ISpinResult } from '@app/interfaces/spin.interface';
 import { spinDataSelector } from '@app/store/selectors/spin.selector';
 import { MessageService } from '@app/services/message/message.service';
+import { RulesComponent } from '@app/components/rules/rules.component';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -53,6 +54,13 @@ export class FooterComponent implements OnInit {
     const dialogRef = this.dialog.open(SignInComponent);
     dialogRef.afterClosed().subscribe(() => {
       console.log(`success signin`);
+    });
+  }
+
+  openRulesDialog() {
+    const dialogRulesRef = this.dialog.open(RulesComponent);
+    dialogRulesRef.afterClosed().subscribe(() => {
+      console.log('close rules dialog');
     });
   }
 

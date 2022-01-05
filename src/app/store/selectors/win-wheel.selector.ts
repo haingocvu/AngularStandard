@@ -9,3 +9,8 @@ export const winWheelDataSelector = createSelector(
   selectWinWheelData,
   (state: IGenericReducerState<IWinWheel>) => state
 );
+
+export const winWheelRulesSelector = createSelector(
+  selectWinWheelData,
+  (state: IGenericReducerState<IWinWheel>) => state.data?.rules
+);

@@ -32,6 +32,9 @@ import { customerInfoReducer } from '@app/store/reducers/customerInfo.reducer';
 import { CustomerInfoEffect } from '@app/store/effects/customerInfo.effect';
 import { FooterComponent } from '@app/components/footer/footer.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
+import { RulesComponent } from './components/rules/rules.component';
+
+import { SafeHtmlPipe } from '@app/pipes/safe-html.pipe';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,8 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
     WinWheelComponent,
     FooterComponent,
     SignInComponent,
+    RulesComponent,
+    SafeHtmlPipe,
   ],
   imports: [
     BrowserModule,
