@@ -1,9 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-reward-alert',
@@ -11,17 +7,26 @@ import {
   styleUrls: ['./reward-alert.component.scss'],
 })
 export class RewardAlertComponent implements OnInit {
+  dataString: string = '';
   constructor(
-    public dialog: MatDialog // @Inject(MAT_DIALOG_DATA) public data: string
-  ) {}
+    public dialogRef: MatDialogRef<RewardAlertComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: string
+  ) {
+    this.dataString = data;
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.data);
+  }
 
-  // congratulationString() {
-  //   return `Xin chúc mừng Quý khách quay trúng ${this.data}`;
-  // }
+  get congratulationString() {
+    return `Xin chúc mừng Quý khách quay trúng ${this.dataString}`;
+  }
 
   closeDialog(): void {
-    this.dialog.closeAll();
+    console.log(this.dialogRef);
+    setTimeout(() => {
+      this.dialogRef.close();
+    }, 0);
   }
 }

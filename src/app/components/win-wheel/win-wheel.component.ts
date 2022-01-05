@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { HttpHeaders } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
+import swa from 'sweetalert2';
 
 import { IWinWheel } from '@app/interfaces/win-wheel.interface';
 import { IStoreState } from '@app/interfaces/store.interface';
@@ -53,8 +54,15 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
       this.customerInfoRawData = data;
     });
 
-    this.messageService.currentMessage.subscribe((message) => {
-      this.startSpin();
+    this.messageService.currentMessage.subscribe((values) => {
+      const { messageType } = values;
+      switch (messageType) {
+        case 1:
+          this.startSpin();
+          break;
+        default:
+          break;
+      }
     });
   }
 
@@ -124,20 +132,65 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
 
   resetWheel(): void {
     this.theWheel.stopAnimation(false);
-    this.theWheel.rotationAngle = 0;
+    this.theWheel.rotationAngle = this.theWheel.animation.stopAngle;
     // this.theWheel.draw();
     this.wheelSpinning = false;
   }
 
   alertPrize(): void {
     this.winningSegment = this.theWheel.getIndicatedSegment().text;
-    const dialogRef = this.dialog.open(RewardAlertComponent, {
-      data: this.winningSegment,
-    });
-    dialogRef.afterClosed().subscribe(() => {
-      console.log(`show rewards`);
+    const textSegment = this.winningSegment;
+    // const dialogRef = this.dialog.open(RewardAlertComponent, {
+    //   data: textSegment,
+    // });
+    // dialogRef.afterClosed().subscribe(() => {
+    //   console.log(`show rewards`);
+    //   this.resetWheel();
+    // });
+    swa.fire({
+      imageUrl: '/assets/images/rewards.png',
+      html: `  <div fxLayout="column" fxLayoutAlign="center center">
+      <div
+        class="main-content"
+        style="
+          font-family: SF Pro Display;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 18px;
+          line-height: 21px;
+          text-align: center;
+          color: #1e2661;
+          margin-top: 20px;
+        "
+      >
+      Xin chúc mừng Quý khách quay trúng ${textSegment}
+      </div>
+      <div
+        class="sub-content"
+        style="
+          font-family: SF Pro Display;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 12px;
+          line-height: 14px;
+          text-align: center;
+          letter-spacing: 0.01em;
+          color: #878dba;
+          margin-top: 20px;
+          margin-bottom: 20px;
+        "
+      >
+        Vui lòng vào mục Giỏ quà để xem các phần thưởng
+      </div>
+    </div>`,
+      focusConfirm: true,
+      confirmButtonText: 'Nhận quà',
+      confirmButtonColor: '#E53935',
+      width: '300px',
+      imageHeight: '150px',
     });
     this.resetWheel();
+    this.messageService.changeMessage(2, textSegment);
   }
 
   public startSpin(): void {
