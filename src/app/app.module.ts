@@ -36,6 +36,7 @@ import { RulesComponent } from './components/rules/rules.component';
 
 import { SafeHtmlPipe } from '@app/pipes/safe-html.pipe';
 import { RewardAlertComponent } from './components/reward-alert/reward-alert.component';
+import { GiftBoxComponent } from './components/gift-box/gift-box.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { RewardAlertComponent } from './components/reward-alert/reward-alert.com
     RulesComponent,
     SafeHtmlPipe,
     RewardAlertComponent,
+    GiftBoxComponent,
   ],
   imports: [
     BrowserModule,

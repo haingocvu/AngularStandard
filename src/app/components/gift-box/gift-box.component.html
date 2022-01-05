@@ -1,0 +1,21 @@
+<mat-dialog-content>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <div
+      class="reward-item"
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      *ngFor="let box of giftBox"
+    >
+      <span class="reward-item-right mr-1">{{ box }}</span>
+    </div>
+    <button
+      mat-raised-button
+      mat-dialog-close
+      color="accent"
+      class="footer-btn"
+      fxFlexFill
+    >
+      Đóng
+    </button>
+  </div>
+</mat-dialog-content>
