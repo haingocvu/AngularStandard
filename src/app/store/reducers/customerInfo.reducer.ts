@@ -25,7 +25,6 @@ const _customerInfoReducer = createReducer(
     isLoading: true,
   })),
   on(getCustomerInfoSuccess, (state, action) => {
-    debugger;
     return {
       ...state,
       isLoading: initialState.isLoading,
@@ -45,7 +44,6 @@ const _customerInfoReducer = createReducer(
     ...initialState,
   })),
   on(saveLoginInfo, (state, action) => {
-    debugger;
     return {
       ...state,
       loginInfo: action.payload,

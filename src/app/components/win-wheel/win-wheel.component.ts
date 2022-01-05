@@ -17,6 +17,8 @@ import { spinDataSelector } from '@app/store/selectors/spin.selector';
 import { customerInfoDataSelector } from '@app/store/selectors/customerInfo.selector';
 import { ICustomerReducerState } from '@app/interfaces/customerInfo.interface';
 import { MessageService } from '@app/services/message/message.service';
+import { MatDialog } from '@angular/material/dialog';
+import { RewardAlertComponent } from '@app/components/reward-alert/reward-alert.component';
 
 declare let Winwheel: any;
 
@@ -29,7 +31,8 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
   constructor(
     private store: Store<IStoreState>,
     private spinner: NgxSpinnerService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    public dialog: MatDialog
   ) {
     this.winWheelData$ = this.store.select(winWheelDataSelector);
     this.spinData$ = this.store.select(spinDataSelector);
@@ -128,7 +131,12 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
 
   alertPrize(): void {
     this.winningSegment = this.theWheel.getIndicatedSegment().text;
-    alert('You have won ' + this.theWheel.getIndicatedSegment().text);
+    const dialogRef = this.dialog.open(RewardAlertComponent, {
+      data: this.winningSegment,
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      console.log(`show rewards`);
+    });
     this.resetWheel();
   }
 
@@ -141,7 +149,6 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
     const remainingTurns = isSpinEnd
       ? this.spinRawData?.data?.remainingTurns
       : this.customerInfoRawData?.data?.remainingTurns;
-    debugger;
     if (remainingTurns && !this.wheelSpinning) {
       if (this.wheelPower === 1) {
         this.theWheel.animation.spins = 3;

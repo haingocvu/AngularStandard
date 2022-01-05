@@ -43,7 +43,6 @@ export class SignInComponent implements OnInit {
 
     this.customerInfo$ = this.store.select(customerInfoDataSelector);
     this.customerInfo$.subscribe((data) => {
-      debugger;
       const { isLoading, isLoaded } = data;
       if (!isLoading && isLoaded) {
         this.spinner.hide();
