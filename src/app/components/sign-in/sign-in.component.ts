@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 
 import { IWinWheel } from '@app/interfaces/win-wheel.interface';
 import { IStoreState } from '@app/interfaces/store.interface';
@@ -34,7 +34,7 @@ export class SignInComponent implements OnInit {
     private _fb: FormBuilder,
     private store: Store<IStoreState>,
     private spinner: NgxSpinnerService,
-    public dialog: MatDialog
+    public dialogRef: MatDialogRef<SignInComponent>
   ) {
     this.winWheelData$ = this.store.select(winWheelDataSelector);
     this.winWheelData$.subscribe((data) => {
@@ -46,7 +46,7 @@ export class SignInComponent implements OnInit {
       const { isLoading, isLoaded } = data;
       if (!isLoading && isLoaded) {
         this.spinner.hide();
-        this.dialog.closeAll();
+        this.dialogRef.close();
       }
     });
 
