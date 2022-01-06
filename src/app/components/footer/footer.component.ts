@@ -15,6 +15,7 @@ import { ISpinResult } from '@app/interfaces/spin.interface';
 import { spinDataSelector } from '@app/store/selectors/spin.selector';
 import { MessageService } from '@app/services/message/message.service';
 import { RulesComponent } from '@app/components/rules/rules.component';
+import { toVietNameseDate } from '@app/utils/datetime';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -87,6 +88,13 @@ export class FooterComponent implements OnInit {
       this.spinRawData?.isLoaded && this.spinRawData.data?.remainingTurns;
     const fromCustomerInfo = this.customerInfoRawData?.data?.remainingTurns;
     return fromSpinApi || fromCustomerInfo;
+  }
+
+  get effectiveDate() {
+    return toVietNameseDate(
+      this.customerInfoRawData?.data?.effectiveToDate,
+      'hh:mm:ss dd:MM:yyyy'
+    );
   }
 
   ngOnInit(): void {}
