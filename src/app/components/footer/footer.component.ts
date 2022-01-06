@@ -16,6 +16,7 @@ import { spinDataSelector } from '@app/store/selectors/spin.selector';
 import { MessageService } from '@app/services/message/message.service';
 import { RulesComponent } from '@app/components/rules/rules.component';
 import { toVietNameseDate } from '@app/utils/datetime';
+import { getCustomerInfoReset } from '@app/store/actions/customerInfo.actions';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -66,6 +67,7 @@ export class FooterComponent implements OnInit {
   }
 
   startSpin() {
+    debugger;
     const isLoading = this.customerInfoRawData?.isLoading;
     const rawData = this.customerInfoRawData?.data;
 
@@ -75,6 +77,7 @@ export class FooterComponent implements OnInit {
       this.messageService.changeMessage(1);
     } else {
       // authentication
+      this.store.dispatch(getCustomerInfoReset());
       this.openDialogSignIn();
     }
   }
