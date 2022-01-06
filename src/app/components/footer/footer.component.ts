@@ -93,7 +93,7 @@ export class FooterComponent implements OnInit {
   get effectiveDate() {
     return toVietNameseDate(
       this.customerInfoRawData?.data?.effectiveToDate,
-      'hh:mm:ss dd:MM:yyyy'
+      'hh:mm:ss dd/MM/yyyy'
     );
   }
 
