@@ -8,6 +8,11 @@
     >
       <span class="reward-item-right mr-1">{{ box }}</span>
     </div>
+    <div fxLayout="row" fxLayoutAlign="center center" *ngIf="!giftBox?.length">
+      <span class="reward-item-right mr-1"
+        >bạn chưa có quà nào, nhanh tay giựt quà bạn nhé!</span
+      >
+    </div>
     <button
       mat-raised-button
       mat-dialog-close
