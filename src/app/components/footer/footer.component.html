@@ -19,11 +19,11 @@
     </div>
   </div>
   <div class="pb-4">
-    <span class="reward-item-right fs-18 mr-1">Còn</span>
-    <span class="reward-item-left fs-18 ml-1 mr-1">{{
+    <span class="reward-item-right fs-18 mr-2 text-upper-case">Còn</span>
+    <span class="reward-item-left fs-18 ml-2 mr-2">{{
       winWheelRawData?.data?.remainingRewards?.totalQuantity
     }}</span>
-    <span class="reward-item-right fs-18 ml-1">món quà</span>
+    <span class="reward-item-right fs-18 ml-2">món quà</span>
   </div>
   <ng-scrollbar style="min-height: 62px">
     <div
@@ -34,8 +34,8 @@
         let rewardItem of winWheelRawData?.data?.remainingRewards?.details
       "
     >
-      <span class="reward-item-left mr-1">{{ rewardItem.quantity }}</span>
-      <span class="reward-item-right ml-1">{{ rewardItem.reward }}</span>
+      <span class="reward-item-left mr-2">{{ rewardItem.quantity }}</span>
+      <span class="reward-item-right ml-2">{{ rewardItem.reward }}</span>
     </div>
   </ng-scrollbar>
 
