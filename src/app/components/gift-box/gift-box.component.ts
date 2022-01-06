@@ -13,7 +13,6 @@ export class GiftBoxComponent implements OnInit {
   giftBox: Array<string> | undefined = [];
   constructor(private store: Store<IStoreState>) {
     this.store.select(giftBoxSelector).subscribe((data) => {
-      debugger;
       this.giftBox = data;
       console.log(this.giftBox);
     });

@@ -67,7 +67,6 @@ export class FooterComponent implements OnInit {
   }
 
   startSpin() {
-    debugger;
     const isLoading = this.customerInfoRawData?.isLoading;
     const rawData = this.customerInfoRawData?.data;
 

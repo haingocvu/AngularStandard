@@ -17,17 +17,8 @@ export const giftBoxSelector = createSelector(
   selectCusData,
   selectSpinData,
   (cusData, spinData) => {
-    debugger;
     const { isLoaded, data: _spinData } = spinData;
     const { data: _cusData } = cusData;
     return isLoaded && _spinData ? _spinData.rewards : _cusData?.rewards;
   }
 );
-
-// export const giftBoxSelector = createSelector(
-//   selectCustomerInfoData,
-//   (spinData) => {
-//     debugger;
-//     return spinData.data?.rewards;
-//   }
-// );

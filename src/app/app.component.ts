@@ -29,7 +29,6 @@ export class AppComponent implements OnInit, AfterViewInit {
       if (!isLoading) {
         this.spinner.hide();
         if (wheelData) {
-          debugger;
           this.shouldShowWinWheelComponent = true;
         }
       }
