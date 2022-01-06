@@ -15,7 +15,7 @@ import { ISpinResult } from '@app/interfaces/spin.interface';
 import { spinDataSelector } from '@app/store/selectors/spin.selector';
 import { MessageService } from '@app/services/message/message.service';
 import { RulesComponent } from '@app/components/rules/rules.component';
-import { toVietNameseDate } from '@app/utils/datetime';
+import { toVietNameseDate } from '@app/utils/datetime.util';
 import { getCustomerInfoReset } from '@app/store/actions/customerInfo.actions';
 @Component({
   selector: 'app-footer',

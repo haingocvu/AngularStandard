@@ -8,7 +8,7 @@ import {
 
 import { Observable } from 'rxjs';
 
-import { getParamsFromUrl } from '@app/utils/urlUtil';
+import { getParamsFromUrl } from '@app/utils/url.util';
 
 @Injectable()
 export class HeaderInterceptor implements HttpInterceptor {
