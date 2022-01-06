@@ -9,3 +9,9 @@ export const customerInfoDataSelector = createSelector(
   selectCustomerInfoData,
   (state: ICustomerReducerState) => state
 );
+
+export const hasEnterCodeSuccessSelector = createSelector(
+  selectCustomerInfoData,
+  (state: ICustomerReducerState) =>
+    !!(!state.isLoading && state.isLoaded && state.data)
+);

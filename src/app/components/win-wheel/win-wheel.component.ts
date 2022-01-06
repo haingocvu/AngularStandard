@@ -187,7 +187,7 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
       confirmButtonText: 'Nhận quà',
       confirmButtonColor: '#E53935',
       width: '300px',
-      imageHeight: '150px',
+      imageHeight: '100px',
     });
     this.resetWheel();
     this.messageService.changeMessage(2, textSegment);
