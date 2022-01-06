@@ -76,7 +76,7 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
   wheelPower = 0;
   wheelSpinning = false;
   winningSegment: string = '';
-  audio = new Audio('/assets/media/tick.mp3');
+  audio = new Audio('../../../assets/media/tick.mp3');
 
   setUpWinWheel() {
     if (!this.winWheelRawData?.isLoading && this.winWheelRawData?.data) {
@@ -148,7 +148,7 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
     //   this.resetWheel();
     // });
     swa.fire({
-      imageUrl: '/assets/images/rewards.png',
+      imageUrl: '../../../assets/images/rewards.png',
       html: `  <div fxLayout="column" fxLayoutAlign="center center">
       <div
         class="main-content"
