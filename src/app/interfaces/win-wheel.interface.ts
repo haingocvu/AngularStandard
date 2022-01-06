@@ -12,6 +12,8 @@ export interface ISegment {
   segmentContent: string;
   obtainContent: string;
   color: string;
+  contentColor: string;
+  type: string;
 }
 
 export interface IRemainingRewards {

@@ -81,7 +81,7 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
   setUpWinWheel() {
     if (!this.winWheelRawData?.isLoading && this.winWheelRawData?.data) {
       for (let i = 0; i < this.winWheelRawData.data.spinSegments.length; i++) {
-        const { id, color, segmentContent, obtainContent } =
+        const { id, color, segmentContent, obtainContent, contentColor } =
           this.winWheelRawData.data.spinSegments[i];
         this.theWheel.addSegment(
           {
@@ -90,6 +90,7 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
             fillStyle: color,
             text: segmentContent,
             obtainContent,
+            textFillStyle: contentColor,
           },
           i + 1
         );
