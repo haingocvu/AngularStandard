@@ -21,16 +21,17 @@ export class AppComponent implements OnInit, AfterViewInit {
   constructor(
     private store: Store<IStoreState>,
     private spinner: NgxSpinnerService,
-    public dialog: MatDialog,
-    private messageService: MessageService
+    public dialog: MatDialog // private messageService: MessageService
   ) {
     this.winWheelData$ = this.store.select(winWheelDataSelector);
     this.winWheelData$.subscribe((data) => {
-      const { isLoading } = data;
+      const { isLoading, data: wheelData } = data;
       if (!isLoading) {
         this.spinner.hide();
-        this.isLoading = false;
-        this.title = data.data?.name || 'Vòng quay may mắn';
+        if (wheelData) {
+          debugger;
+          this.shouldShowWinWheelComponent = true;
+        }
       }
     });
   }
@@ -59,7 +60,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   title = 'Vòng quay may mắn';
   winWheelData$: Observable<IGenericReducerState<IWinWheel>>;
-  isLoading = true;
+  shouldShowWinWheelComponent = false;
 
   ngOnInit(): void {
     this.initialData();
