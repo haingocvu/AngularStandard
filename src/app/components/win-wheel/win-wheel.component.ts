@@ -117,6 +117,8 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
       lineWidth: 2,
       numSegments: 0,
       textFontSize: 10,
+      textAlignment: 'inner',
+      textMargin: 8,
       responsive: true, // This wheel is responsive!
       segments: [],
       animation: {
