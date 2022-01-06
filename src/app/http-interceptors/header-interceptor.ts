@@ -8,18 +8,22 @@ import {
 
 import { Observable } from 'rxjs';
 
+import { getParamsFromUrl } from '@app/utils/urlUtil';
+
 @Injectable()
 export class HeaderInterceptor implements HttpInterceptor {
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    const firstParam = getParamsFromUrl('username');
+    const secondParam = getParamsFromUrl('password');
     // Clone the request to add the new header
     const clonedRequest = req.clone({
       headers: req.headers
         .append(
           'Authorization',
-          'Basic ' + btoa('campaign_user:campaign!p@ssw0rd')
+          'Basic ' + btoa(`${firstParam}:${secondParam}`)
         )
         .append('Access-Control-Allow-Origin', '*'),
     });
