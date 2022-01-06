@@ -6,14 +6,14 @@
 >
   <div *ngIf="isShowRemainingTurns">
     <div fxLayout="row" fxLayoutAlign="space-between" fxFlexFill>
-      <div fxFlex="45" class="turns-title text-align-left">Lượt quay</div>
-      <div fxFlex="55" class="turns-title text-align-right">Hết hạn</div>
+      <div fxFlex="40" class="turns-title text-align-left">Lượt quay</div>
+      <div fxFlex="60" class="turns-title text-align-right">Hết hạn</div>
     </div>
     <div fxLayout="row" fxLayoutAlign="space-between" fxFlexFill>
-      <div fxFlex="45" class="turns-value text-align-left">
+      <div fxFlex="40" class="turns-value text-align-left">
         {{ getRemainingTurns }}
       </div>
-      <div fxFlex="55" class="turns-value text-align-right">
+      <div fxFlex="60" class="turns-value text-align-right">
         {{ customerInfoRawData?.data?.effectiveToDate }}
       </div>
     </div>
