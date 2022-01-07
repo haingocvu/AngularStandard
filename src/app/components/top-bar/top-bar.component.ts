@@ -5,7 +5,6 @@ import { campaignNameSelector } from '@app/store/selectors/win-wheel.selector';
 import { MatDialog } from '@angular/material/dialog';
 import { SwalComponent, SwalPortalTargets } from '@sweetalert2/ngx-sweetalert2';
 
-import { GiftBoxComponent } from '@app/components/gift-box/gift-box.component';
 import { hasEnterCodeSuccessSelector } from '@app/store/selectors/customerInfo.selector';
 
 @Component({
@@ -34,10 +33,6 @@ export class TopBarComponent implements OnInit {
   ngOnInit(): void {}
 
   openDialog() {
-    // const dialogRef = this.dialog.open(GiftBoxComponent);
-    // dialogRef.afterClosed().subscribe(() => {
-    //   console.log(`success close gift box`);
-    // });
     this.giftBoxSwal.fire();
   }
 }

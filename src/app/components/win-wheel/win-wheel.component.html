@@ -19,9 +19,10 @@
       <div *swalPortal="swalTargets.content">
         <app-reward-alert
           [self]="spinResultSwal"
-          [dataString]="'200$'"
+          [dataString]="winningSegment"
         ></app-reward-alert>
       </div>
     </swal>
+    <button class="hidden-btn" id="btnHidden" (click)="fireEvent()"></button>
   </div>
 </div>

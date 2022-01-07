@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { HttpHeaders } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
-// import swa from 'sweetalert2';
 import { SwalComponent, SwalPortalTargets } from '@sweetalert2/ngx-sweetalert2';
 
 import { IWinWheel } from '@app/interfaces/win-wheel.interface';
@@ -20,7 +19,6 @@ import { customerInfoDataSelector } from '@app/store/selectors/customerInfo.sele
 import { ICustomerReducerState } from '@app/interfaces/customerInfo.interface';
 import { MessageService } from '@app/services/message/message.service';
 import { MatDialog } from '@angular/material/dialog';
-// import { RewardAlertComponent } from '@app/components/reward-alert/reward-alert.component';
 
 declare let Winwheel: any;
 
@@ -32,6 +30,7 @@ declare let Winwheel: any;
 export class WinWheelComponent implements OnInit, AfterViewInit {
   @ViewChild('spinResultSwal')
   public readonly spinResultSwal!: SwalComponent;
+  @ViewChild('btnHidden') public readonly btnHidden!: HTMLButtonElement;
   constructor(
     private store: Store<IStoreState>,
     private spinner: NgxSpinnerService,
@@ -146,59 +145,13 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
 
   alertPrize(): void {
     this.winningSegment = this.theWheel.getIndicatedSegment().text;
-    const textSegment = this.winningSegment;
-    // const dialogRef = this.dialog.open(RewardAlertComponent, {
-    //   data: textSegment,
-    // });
-    // dialogRef.afterClosed().subscribe(() => {
-    //   console.log(`show rewards`);
-    //   this.resetWheel();
-    // });
-    // swa.fire({
-    //   imageUrl: '../../../assets/images/rewards.png',
-    //   html: `  <div fxLayout="column" fxLayoutAlign="center center">
-    //   <div
-    //     class="main-content"
-    //     style="
-    //       font-family: SF Pro Display;
-    //       font-style: normal;
-    //       font-weight: bold;
-    //       font-size: 18px;
-    //       line-height: 21px;
-    //       text-align: center;
-    //       color: #1e2661;
-    //       margin-top: 20px;
-    //     "
-    //   >
-    //   Xin chúc mừng Quý khách quay trúng ${textSegment}
-    //   </div>
-    //   <div
-    //     class="sub-content"
-    //     style="
-    //       font-family: SF Pro Display;
-    //       font-style: normal;
-    //       font-weight: normal;
-    //       font-size: 12px;
-    //       line-height: 14px;
-    //       text-align: center;
-    //       letter-spacing: 0.01em;
-    //       color: #878dba;
-    //       margin-top: 20px;
-    //       margin-bottom: 20px;
-    //     "
-    //   >
-    //     Vui lòng vào mục Giỏ quà để xem các phần thưởng
-    //   </div>
-    // </div>`,
-    //   focusConfirm: true,
-    //   confirmButtonText: 'Nhận quà',
-    //   confirmButtonColor: '#E53935',
-    //   width: '300px',
-    //   imageHeight: '100px',
-    // });
-    this.spinResultSwal.fire();
+    const btnHidden = window.document.getElementById('btnHidden');
+    btnHidden?.click();
     this.resetWheel();
-    this.messageService.changeMessage(2, textSegment);
+  }
+
+  fireEvent() {
+    this.spinResultSwal.fire();
   }
 
   public startSpin(): void {

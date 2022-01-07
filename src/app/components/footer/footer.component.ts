@@ -10,13 +10,11 @@ import { winWheelDataSelector } from '@app/store/selectors/win-wheel.selector';
 import { IStoreState } from '@app/interfaces/store.interface';
 import { IGenericReducerState } from '@app/interfaces/general-reducer-state.interface';
 
-import { SignInComponent } from '@app/components/sign-in/sign-in.component';
 import { customerInfoDataSelector } from '@app/store/selectors/customerInfo.selector';
 import { ICustomerInfo } from '@app/interfaces/customerInfo.interface';
 import { ISpinResult } from '@app/interfaces/spin.interface';
 import { spinDataSelector } from '@app/store/selectors/spin.selector';
 import { MessageService } from '@app/services/message/message.service';
-import { RulesComponent } from '@app/components/rules/rules.component';
 import { toDateTimeString } from '@app/utils/datetime.util';
 import { getCustomerInfoReset } from '@app/store/actions/customerInfo.actions';
 @Component({
@@ -59,19 +57,10 @@ export class FooterComponent implements OnInit {
   }
 
   openDialogSignIn() {
-    // authentication
-    // const dialogRef = this.dialog.open(SignInComponent);
-    // dialogRef.afterClosed().subscribe(() => {
-    //   console.log(`success signin`);
-    // });
     this.signInSwal.fire();
   }
 
   openRulesDialog() {
-    // const dialogRulesRef = this.dialog.open(RulesComponent);
-    // dialogRulesRef.afterClosed().subscribe(() => {
-    //   console.log('close rules dialog');
-    // });
     this.rulesSwal.fire();
   }
 
@@ -102,7 +91,6 @@ export class FooterComponent implements OnInit {
   }
 
   get effectiveDate() {
-    debugger;
     const eDate = this.customerInfoRawData?.data?.effectiveToDate;
     return eDate
       ? toDateTimeString(

@@ -9,8 +9,6 @@ import { IWinWheel } from '@app/interfaces/win-wheel.interface';
 import { IStoreState } from '@app/interfaces/store.interface';
 import { winWheelDataSelector } from '@app/store/selectors/win-wheel.selector';
 import { IGenericReducerState } from '@app/interfaces/general-reducer-state.interface';
-import { MessageService } from '@app/services/message/message.service';
-import { RewardAlertComponent } from '@app/components/reward-alert/reward-alert.component';
 
 @Component({
   selector: 'app-root',
@@ -34,28 +32,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       }
     });
   }
-  ngAfterViewInit(): void {
-    // this.messageService.currentMessage.subscribe((values) => {
-    //   const { messageType, messageText } = values;
-    //   switch (messageType) {
-    //     case 2:
-    //       this.showSpinResultDialog(messageText);
-    //       break;
-    //     default:
-    //       break;
-    //   }
-    // });
-  }
-
-  // showSpinResultDialog(messageText: string) {
-  //   const spinResultDialogRef = this.dialog.open(RewardAlertComponent, {
-  //     data: messageText,
-  //   });
-
-  //   spinResultDialogRef.afterClosed().subscribe(() => {
-  //     console.log('close spin result dialog');
-  //   });
-  // }
+  ngAfterViewInit(): void {}
 
   title = 'Vòng quay may mắn';
   winWheelData$: Observable<IGenericReducerState<IWinWheel>>;
