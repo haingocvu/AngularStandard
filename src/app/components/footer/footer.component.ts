@@ -17,7 +17,7 @@ import { ISpinResult } from '@app/interfaces/spin.interface';
 import { spinDataSelector } from '@app/store/selectors/spin.selector';
 import { MessageService } from '@app/services/message/message.service';
 import { RulesComponent } from '@app/components/rules/rules.component';
-import { toVietNameseDate } from '@app/utils/datetime.util';
+import { toDateTimeString } from '@app/utils/datetime.util';
 import { getCustomerInfoReset } from '@app/store/actions/customerInfo.actions';
 @Component({
   selector: 'app-footer',
@@ -102,10 +102,15 @@ export class FooterComponent implements OnInit {
   }
 
   get effectiveDate() {
-    return toVietNameseDate(
-      this.customerInfoRawData?.data?.effectiveToDate,
-      'hh:mm:ss dd/MM/yyyy'
-    );
+    debugger;
+    const eDate = this.customerInfoRawData?.data?.effectiveToDate;
+    return eDate
+      ? toDateTimeString(
+          this.customerInfoRawData?.data?.effectiveToDate,
+          'yyyy-MM-dd HH:mm:ss',
+          'HH:mm:ss dd-MM-yyyy'
+        )
+      : null;
   }
 
   ngOnInit(): void {}

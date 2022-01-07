@@ -13,10 +13,18 @@ const toVietNameseDateTime = (timeString: any) =>
     locale: vi,
   });
 
-const toVietNameseDate = (timeString: any, formatting: string = 'dd/MM/yyyy') =>
-  format(new Date(timeString), formatting, {
-    locale: vi,
-  });
+const toDateTimeString = (
+  dateTimeString: any,
+  currentFormatting: string,
+  formatting: string
+) =>
+  format(
+    parseDateStringToDateObject(dateTimeString, currentFormatting),
+    formatting,
+    {
+      locale: vi,
+    }
+  );
 
 const parseDateStringToDateObject = (
   dateString: string,
@@ -35,7 +43,7 @@ export {
   dateToUnix,
   unixTimeToDate,
   toVietNameseDateTime,
-  toVietNameseDate,
+  toDateTimeString,
   parseDateStringToDateObject,
   parseDateObjectToDateString,
 };
