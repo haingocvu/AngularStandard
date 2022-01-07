@@ -60,4 +60,9 @@
       <app-rules></app-rules>
     </div>
   </swal>
+  <swal #signInSwal [swalOptions]="{ showConfirmButton: false }">
+    <div *swalPortal="swalTargets.content" class="alert alert-info">
+      <app-sign-in [self]="signInSwal"></app-sign-in>
+    </div>
+  </swal>
 </div>

@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { MatDialogRef } from '@angular/material/dialog';
+// import { MatDialogRef } from '@angular/material/dialog';
 
 import { IWinWheel } from '@app/interfaces/win-wheel.interface';
 import { IStoreState } from '@app/interfaces/store.interface';
@@ -19,6 +19,7 @@ import { ICustomerInfo } from '@app/interfaces/customerInfo.interface';
 
 import { customerInfoDataSelector } from '@app/store/selectors/customerInfo.selector';
 import { saveLoginInfo } from '@app/store/actions/customerInfo.actions';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 
 @Component({
   selector: 'app-sign-in',
@@ -26,6 +27,8 @@ import { saveLoginInfo } from '@app/store/actions/customerInfo.actions';
   styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent implements OnInit {
+  @Input()
+  self!: SwalComponent;
   _frm;
   winWheelData$: Observable<IGenericReducerState<IWinWheel>>;
   customerInfo$: Observable<IGenericReducerState<ICustomerInfo>>;
@@ -33,8 +36,7 @@ export class SignInComponent implements OnInit {
   constructor(
     private _fb: FormBuilder,
     private store: Store<IStoreState>,
-    private spinner: NgxSpinnerService,
-    public dialogRef: MatDialogRef<SignInComponent>
+    private spinner: NgxSpinnerService
   ) {
     this.winWheelData$ = this.store.select(winWheelDataSelector);
     this.winWheelData$.subscribe((data) => {
@@ -46,7 +48,8 @@ export class SignInComponent implements OnInit {
       const { isLoading, isLoaded } = data;
       if (!isLoading && isLoaded) {
         this.spinner.hide();
-        this.dialogRef.close();
+        //close modal
+        this.self.close();
       }
     });
 

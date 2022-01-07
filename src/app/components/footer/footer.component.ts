@@ -27,6 +27,8 @@ import { getCustomerInfoReset } from '@app/store/actions/customerInfo.actions';
 export class FooterComponent implements OnInit {
   @ViewChild('rulesSwal')
   public readonly rulesSwal!: SwalComponent;
+  @ViewChild('signInSwal')
+  public readonly signInSwal!: SwalComponent;
   winWheelData$: Observable<IGenericReducerState<IWinWheel>>;
   winWheelRawData: IGenericReducerState<IWinWheel> | null = null;
   customerInfo$: Observable<IGenericReducerState<ICustomerInfo>>;
@@ -58,10 +60,11 @@ export class FooterComponent implements OnInit {
 
   openDialogSignIn() {
     // authentication
-    const dialogRef = this.dialog.open(SignInComponent);
-    dialogRef.afterClosed().subscribe(() => {
-      console.log(`success signin`);
-    });
+    // const dialogRef = this.dialog.open(SignInComponent);
+    // dialogRef.afterClosed().subscribe(() => {
+    //   console.log(`success signin`);
+    // });
+    this.signInSwal.fire();
   }
 
   openRulesDialog() {
