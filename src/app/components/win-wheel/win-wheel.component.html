@@ -1,29 +1,27 @@
-<div>
-  <div fxLayout="row" fxLayoutAlign="center center">
-    <div id="canvasContainer">
-      <canvas
-        id="canvas"
-        width="400"
-        height="460"
-        data-responsiveMinWidth="180"
-        data-responsiveScaleHeight="true"
-        data-responsiveMargin="50"
-      >
-        Canvas not supported, please user another browser.
-      </canvas>
-    </div>
-    <swal
-      #spinResultSwal
-      [swalOptions]="{ showConfirmButton: false, width: 300 }"
+<div fxLayout="row" fxLayoutAlign="center center" fxFlexFill>
+  <div id="canvasContainer">
+    <canvas
+      id="canvas"
+      width="400"
+      height="460"
+      data-responsiveMinWidth="180"
+      data-responsiveScaleHeight="true"
+      data-responsiveMargin="50"
     >
-      <div *swalPortal="swalTargets.content">
-        <app-reward-alert
-          [self]="spinResultSwal"
-          [dataString]="winningSegment"
-          [type]="rewardType"
-        ></app-reward-alert>
-      </div>
-    </swal>
-    <button class="hidden-btn" id="btnHidden" (click)="fireEvent()"></button>
+      Canvas not supported, please user another browser.
+    </canvas>
   </div>
+  <swal
+    #spinResultSwal
+    [swalOptions]="{ showConfirmButton: false, width: 300 }"
+  >
+    <div *swalPortal="swalTargets.content">
+      <app-reward-alert
+        [self]="spinResultSwal"
+        [dataString]="winningSegment"
+        [type]="rewardType"
+      ></app-reward-alert>
+    </div>
+  </swal>
+  <button class="hidden-btn" id="btnHidden" (click)="fireEvent()"></button>
 </div>
