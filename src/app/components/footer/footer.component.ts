@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
+import { SwalPortalTargets } from '@sweetalert2/ngx-sweetalert2';
 
 import { IWinWheel } from '@app/interfaces/win-wheel.interface';
 import { winWheelDataSelector } from '@app/store/selectors/win-wheel.selector';
@@ -23,6 +25,8 @@ import { getCustomerInfoReset } from '@app/store/actions/customerInfo.actions';
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
+  @ViewChild('deleteSwal')
+  public readonly deleteSwal!: SwalComponent;
   winWheelData$: Observable<IGenericReducerState<IWinWheel>>;
   winWheelRawData: IGenericReducerState<IWinWheel> | null = null;
   customerInfo$: Observable<IGenericReducerState<ICustomerInfo>>;
@@ -33,7 +37,8 @@ export class FooterComponent implements OnInit {
   constructor(
     private store: Store<IStoreState>,
     public dialog: MatDialog,
-    private messageService: MessageService
+    private messageService: MessageService,
+    public readonly swalTargets: SwalPortalTargets
   ) {
     this.winWheelData$ = this.store.select(winWheelDataSelector);
     this.winWheelData$.subscribe((data) => {
@@ -60,10 +65,11 @@ export class FooterComponent implements OnInit {
   }
 
   openRulesDialog() {
-    const dialogRulesRef = this.dialog.open(RulesComponent);
-    dialogRulesRef.afterClosed().subscribe(() => {
-      console.log('close rules dialog');
-    });
+    // const dialogRulesRef = this.dialog.open(RulesComponent);
+    // dialogRulesRef.afterClosed().subscribe(() => {
+    //   console.log('close rules dialog');
+    // });
+    this.deleteSwal.fire();
   }
 
   startSpin() {

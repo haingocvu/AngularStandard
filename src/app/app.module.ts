@@ -15,6 +15,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
@@ -76,6 +77,7 @@ import { GiftBoxComponent } from './components/gift-box/gift-box.component';
     MatDialogModule,
     MatInputModule,
     ReactiveFormsModule,
+    SweetAlert2Module.forRoot(),
   ],
   providers: [
     {
