@@ -57,7 +57,7 @@
   </button>
   <swal #rulesSwal [swalOptions]="{ showConfirmButton: false, width: 300 }">
     <div *swalPortal="swalTargets.content" class="alert alert-info">
-      <app-rules></app-rules>
+      <app-rules [self]="rulesSwal"></app-rules>
     </div>
   </swal>
   <swal #signInSwal [swalOptions]="{ showConfirmButton: false, width: 300 }">

@@ -1,3 +1,12 @@
 <mat-dialog-content>
   <span [innerHTML]="ruleRawData | safeHtml"></span>
+  <button
+    mat-raised-button
+    color="accent"
+    class="footer-btn"
+    fxFlexFill
+    (click)="closeDialog()"
+  >
+    Đóng
+  </button>
 </mat-dialog-content>

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IStoreState } from '@app/interfaces/store.interface';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 
 import { winWheelRulesSelector } from '@app/store/selectors/win-wheel.selector';
 
@@ -11,6 +12,8 @@ import { winWheelRulesSelector } from '@app/store/selectors/win-wheel.selector';
   styleUrls: ['./rules.component.scss'],
 })
 export class RulesComponent implements OnInit {
+  @Input()
+  self!: SwalComponent;
   constructor(private store: Store<IStoreState>) {
     this.rules$.subscribe((rules) => {
       this.ruleRawData = rules;
@@ -21,6 +24,10 @@ export class RulesComponent implements OnInit {
   );
 
   ruleRawData: string | undefined = '';
+
+  closeDialog() {
+    this.self.close();
+  }
 
   ngOnInit(): void {}
 }
