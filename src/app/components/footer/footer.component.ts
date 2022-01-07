@@ -25,8 +25,8 @@ import { getCustomerInfoReset } from '@app/store/actions/customerInfo.actions';
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
-  @ViewChild('deleteSwal')
-  public readonly deleteSwal!: SwalComponent;
+  @ViewChild('rulesSwal')
+  public readonly rulesSwal!: SwalComponent;
   winWheelData$: Observable<IGenericReducerState<IWinWheel>>;
   winWheelRawData: IGenericReducerState<IWinWheel> | null = null;
   customerInfo$: Observable<IGenericReducerState<ICustomerInfo>>;
@@ -69,7 +69,7 @@ export class FooterComponent implements OnInit {
     // dialogRulesRef.afterClosed().subscribe(() => {
     //   console.log('close rules dialog');
     // });
-    this.deleteSwal.fire();
+    this.rulesSwal.fire();
   }
 
   startSpin() {
