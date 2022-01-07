@@ -1,6 +1,6 @@
 <div class="content-height">
   <div fxLayout="column" fxLayoutAlign="center center">
-    <div class="rewards-images"></div>
+    <div class="rewards-images" *ngIf="type !== 'nogift'"></div>
     <div class="main-content">
       {{ congratulationString }}
     </div>
