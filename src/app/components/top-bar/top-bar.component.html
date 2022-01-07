@@ -13,7 +13,7 @@
     </button>
   </div>
   <swal #giftBoxSwal [swalOptions]="{ showConfirmButton: false, width: 300 }">
-    <div *swalPortal="swalTargets.content" class="alert alert-info">
+    <div *swalPortal="swalTargets.content">
       <app-gift-box [self]="giftBoxSwal"></app-gift-box>
     </div>
   </swal>

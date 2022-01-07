@@ -3,6 +3,7 @@
   box-shadow: 0px 20px 30px rgba(254, 114, 76, 0.251);
   border-radius: 1000px;
   margin-top: 4px;
+  min-width: 210px;
 }
 
 .main-content {
@@ -27,4 +28,9 @@
   color: #878dba;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.content-height {
+  max-height: 350px;
+  height: 350px;
 }

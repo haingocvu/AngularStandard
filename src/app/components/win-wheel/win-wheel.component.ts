@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { HttpHeaders } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
-import swa from 'sweetalert2';
+// import swa from 'sweetalert2';
+import { SwalComponent, SwalPortalTargets } from '@sweetalert2/ngx-sweetalert2';
 
 import { IWinWheel } from '@app/interfaces/win-wheel.interface';
 import { IStoreState } from '@app/interfaces/store.interface';
@@ -19,7 +20,7 @@ import { customerInfoDataSelector } from '@app/store/selectors/customerInfo.sele
 import { ICustomerReducerState } from '@app/interfaces/customerInfo.interface';
 import { MessageService } from '@app/services/message/message.service';
 import { MatDialog } from '@angular/material/dialog';
-import { RewardAlertComponent } from '@app/components/reward-alert/reward-alert.component';
+// import { RewardAlertComponent } from '@app/components/reward-alert/reward-alert.component';
 
 declare let Winwheel: any;
 
@@ -29,11 +30,14 @@ declare let Winwheel: any;
   styleUrls: ['./win-wheel.component.scss'],
 })
 export class WinWheelComponent implements OnInit, AfterViewInit {
+  @ViewChild('spinResultSwal')
+  public readonly spinResultSwal!: SwalComponent;
   constructor(
     private store: Store<IStoreState>,
     private spinner: NgxSpinnerService,
     private messageService: MessageService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public readonly swalTargets: SwalPortalTargets
   ) {
     this.winWheelData$ = this.store.select(winWheelDataSelector);
     this.spinData$ = this.store.select(spinDataSelector);
@@ -150,48 +154,49 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
     //   console.log(`show rewards`);
     //   this.resetWheel();
     // });
-    swa.fire({
-      imageUrl: '../../../assets/images/rewards.png',
-      html: `  <div fxLayout="column" fxLayoutAlign="center center">
-      <div
-        class="main-content"
-        style="
-          font-family: SF Pro Display;
-          font-style: normal;
-          font-weight: bold;
-          font-size: 18px;
-          line-height: 21px;
-          text-align: center;
-          color: #1e2661;
-          margin-top: 20px;
-        "
-      >
-      Xin chúc mừng Quý khách quay trúng ${textSegment}
-      </div>
-      <div
-        class="sub-content"
-        style="
-          font-family: SF Pro Display;
-          font-style: normal;
-          font-weight: normal;
-          font-size: 12px;
-          line-height: 14px;
-          text-align: center;
-          letter-spacing: 0.01em;
-          color: #878dba;
-          margin-top: 20px;
-          margin-bottom: 20px;
-        "
-      >
-        Vui lòng vào mục Giỏ quà để xem các phần thưởng
-      </div>
-    </div>`,
-      focusConfirm: true,
-      confirmButtonText: 'Nhận quà',
-      confirmButtonColor: '#E53935',
-      width: '300px',
-      imageHeight: '100px',
-    });
+    // swa.fire({
+    //   imageUrl: '../../../assets/images/rewards.png',
+    //   html: `  <div fxLayout="column" fxLayoutAlign="center center">
+    //   <div
+    //     class="main-content"
+    //     style="
+    //       font-family: SF Pro Display;
+    //       font-style: normal;
+    //       font-weight: bold;
+    //       font-size: 18px;
+    //       line-height: 21px;
+    //       text-align: center;
+    //       color: #1e2661;
+    //       margin-top: 20px;
+    //     "
+    //   >
+    //   Xin chúc mừng Quý khách quay trúng ${textSegment}
+    //   </div>
+    //   <div
+    //     class="sub-content"
+    //     style="
+    //       font-family: SF Pro Display;
+    //       font-style: normal;
+    //       font-weight: normal;
+    //       font-size: 12px;
+    //       line-height: 14px;
+    //       text-align: center;
+    //       letter-spacing: 0.01em;
+    //       color: #878dba;
+    //       margin-top: 20px;
+    //       margin-bottom: 20px;
+    //     "
+    //   >
+    //     Vui lòng vào mục Giỏ quà để xem các phần thưởng
+    //   </div>
+    // </div>`,
+    //   focusConfirm: true,
+    //   confirmButtonText: 'Nhận quà',
+    //   confirmButtonColor: '#E53935',
+    //   width: '300px',
+    //   imageHeight: '100px',
+    // });
+    this.spinResultSwal.fire();
     this.resetWheel();
     this.messageService.changeMessage(2, textSegment);
   }
