@@ -33,3 +33,14 @@
 .content-height {
   max-height: 350px;
 }
+
+.rewards-images {
+  max-width: 170px;
+  max-height: 150px;
+  width: 100%;
+  height: 100vh;
+  background: url("../../../assets/images/rewards.png") no - repeat;
+  background-size: cover;
+  color: white;
+  text-align: center;
+}
