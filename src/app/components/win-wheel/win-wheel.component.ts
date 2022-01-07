@@ -79,6 +79,7 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
   wheelPower = 0;
   wheelSpinning = false;
   winningSegment: string = '';
+  rewardType: string = '';
   audio = new Audio('../../../assets/media/tick.mp3');
 
   setUpWinWheel() {
@@ -144,7 +145,6 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
   }
 
   alertPrize(): void {
-    this.winningSegment = this.theWheel.getIndicatedSegment().text;
     const btnHidden = window.document.getElementById('btnHidden');
     btnHidden?.click();
     this.resetWheel();
@@ -205,6 +205,11 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
       if (segmentIndex && segmentIndex >= 0) {
         // Get random angle inside specified segment of the wheel.
         let stopAt = this.theWheel.getRandomForSegment(segmentIndex + 1);
+        this.winningSegment =
+          this.winWheelRawData?.data?.spinSegments[segmentIndex]
+            .obtainContent || '';
+        this.rewardType =
+          this.winWheelRawData?.data?.spinSegments[segmentIndex].type || '';
 
         // Important thing is to set the stopAngle of the animation before stating the spin.
         this.theWheel.animation.stopAngle = stopAt;

@@ -3,7 +3,7 @@
     <div class="main-content">
       {{ congratulationString }}
     </div>
-    <div class="sub-content">
+    <div class="sub-content" *ngIf="type !== 'nogift'">
       Vui lòng vào mục Giỏ quà để xem các phần thưởng
     </div>
     <button

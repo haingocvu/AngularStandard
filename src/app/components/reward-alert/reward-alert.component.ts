@@ -9,13 +9,16 @@ import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 export class RewardAlertComponent implements OnInit {
   @Input()
   self!: SwalComponent;
-  @Input() dataString: string = '';
+  @Input()
+  dataString!: string;
+  @Input()
+  type!: string;
   constructor() {}
 
   ngOnInit(): void {}
 
   get congratulationString() {
-    return `Xin chúc mừng Quý khách quay trúng ${this.dataString}`;
+    return `${this.dataString}`;
   }
 
   closeDialog(): void {
