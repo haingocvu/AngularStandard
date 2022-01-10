@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { SwalPortalTargets } from '@sweetalert2/ngx-sweetalert2';
+import { FocusMonitor } from '@angular/cdk/a11y';
 
 import { IWinWheel } from '@app/interfaces/win-wheel.interface';
 import { winWheelDataSelector } from '@app/store/selectors/win-wheel.selector';
@@ -24,7 +25,7 @@ import { turnsDataSelector } from '@app/store/selectors/turns.selector';
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent implements OnInit, AfterViewInit {
   @ViewChild('rulesSwal')
   public readonly rulesSwal!: SwalComponent;
   @ViewChild('signInSwal')
@@ -41,7 +42,8 @@ export class FooterComponent implements OnInit {
     private store: Store<IStoreState>,
     public dialog: MatDialog,
     private messageService: MessageService,
-    public readonly swalTargets: SwalPortalTargets
+    public readonly swalTargets: SwalPortalTargets,
+    private _focusMonitor: FocusMonitor
   ) {
     this.winWheelData$ = this.store.select(winWheelDataSelector);
     this.winWheelData$.subscribe((data) => {
@@ -61,6 +63,10 @@ export class FooterComponent implements OnInit {
     this.store.select(turnsDataSelector).subscribe((turns) => {
       this.remainingTurns = turns;
     });
+  }
+  ngAfterViewInit(): void {
+    // @ts-ignore
+    this._focusMonitor.stopMonitoring(document.getElementById('spinNow'));
   }
 
   openDialogSignIn() {
