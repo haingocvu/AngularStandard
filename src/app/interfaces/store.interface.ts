@@ -7,4 +7,5 @@ export interface IStoreState {
   winWheelData: IGenericReducerState<IWinWheel>;
   spinData: IGenericReducerState<ISpinResult>;
   customerInfoData: ICustomerReducerState;
+  remainingTurns: number;
 }

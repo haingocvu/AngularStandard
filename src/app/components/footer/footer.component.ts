@@ -17,6 +17,8 @@ import { spinDataSelector } from '@app/store/selectors/spin.selector';
 import { MessageService } from '@app/services/message/message.service';
 import { toDateTimeString } from '@app/utils/datetime.util';
 import { getCustomerInfoReset } from '@app/store/actions/customerInfo.actions';
+
+import { turnsDataSelector } from '@app/store/selectors/turns.selector';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -33,6 +35,7 @@ export class FooterComponent implements OnInit {
   customerInfoRawData: IGenericReducerState<ICustomerInfo> | null = null;
   spinData$: Observable<IGenericReducerState<ISpinResult>>;
   spinRawData: IGenericReducerState<ISpinResult> | null = null;
+  remainingTurns: number = 0;
 
   constructor(
     private store: Store<IStoreState>,
@@ -53,6 +56,10 @@ export class FooterComponent implements OnInit {
     this.spinData$ = this.store.select(spinDataSelector);
     this.spinData$.subscribe((data) => {
       this.spinRawData = data;
+    });
+
+    this.store.select(turnsDataSelector).subscribe((turns) => {
+      this.remainingTurns = turns;
     });
   }
 
@@ -84,10 +91,7 @@ export class FooterComponent implements OnInit {
   }
 
   get getRemainingTurns() {
-    const fromSpinApi =
-      this.spinRawData?.isLoaded && this.spinRawData.data?.remainingTurns;
-    const fromCustomerInfo = this.customerInfoRawData?.data?.remainingTurns;
-    return fromSpinApi || fromCustomerInfo;
+    return this.remainingTurns;
   }
 
   get effectiveDate() {

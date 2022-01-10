@@ -19,6 +19,7 @@ import { ICustomerInfo } from '@app/interfaces/customerInfo.interface';
 import { customerInfoDataSelector } from '@app/store/selectors/customerInfo.selector';
 import { saveLoginInfo } from '@app/store/actions/customerInfo.actions';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
+import { setTurnCount } from '@app/store/actions/turns.actions';
 
 @Component({
   selector: 'app-sign-in',
@@ -44,11 +45,15 @@ export class SignInComponent implements OnInit {
 
     this.customerInfo$ = this.store.select(customerInfoDataSelector);
     this.customerInfo$.subscribe((data) => {
-      const { isLoading, isLoaded } = data;
+      const { isLoading, isLoaded, data: cusInfo } = data;
       if (!isLoading && isLoaded) {
         this.spinner.hide();
         //close modal
         this.self.close();
+
+        if (cusInfo) {
+          this.store.dispatch(setTurnCount(cusInfo.remainingTurns));
+        }
       }
     });
 

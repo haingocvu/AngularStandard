@@ -39,6 +39,8 @@ import { SafeHtmlPipe } from '@app/pipes/safe-html.pipe';
 import { RewardAlertComponent } from './components/reward-alert/reward-alert.component';
 import { GiftBoxComponent } from './components/gift-box/gift-box.component';
 
+import { turnsReducer } from '@app/store/reducers/turns.reducer';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +67,7 @@ import { GiftBoxComponent } from './components/gift-box/gift-box.component';
       winWheelData: winWheelReducer,
       spinData: spinReducer,
       customerInfoData: customerInfoReducer,
+      remainingTurns: turnsReducer,
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

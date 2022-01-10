@@ -20,6 +20,8 @@ import { ICustomerReducerState } from '@app/interfaces/customerInfo.interface';
 import { MessageService } from '@app/services/message/message.service';
 import { MatDialog } from '@angular/material/dialog';
 
+import { setTurnCount } from '@app/store/actions/turns.actions';
+
 declare let Winwheel: any;
 
 @Component({
@@ -49,7 +51,10 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
       this.spinRawData = data;
       const { isLoading, data: spinData } = this.spinRawData;
       if (!isLoading) this.spinner.hide();
-      if (!isLoading && spinData) this.showSpinResult();
+      if (!isLoading && spinData) {
+        this.store.dispatch(setTurnCount(spinData.remainingTurns));
+        this.showSpinResult();
+      }
     });
 
     this.customerInfo$ = this.store.select(customerInfoDataSelector);
