@@ -55,12 +55,18 @@
   >
     Quay ngay
   </button>
-  <swal #rulesSwal [swalOptions]="{ showConfirmButton: false, width: 350 }">
+  <swal
+    #rulesSwal
+    [swalOptions]="{ showConfirmButton: false, width: 350, heightAuto: false }"
+  >
     <div *swalPortal="swalTargets.content">
       <app-rules [self]="rulesSwal"></app-rules>
     </div>
   </swal>
-  <swal #signInSwal [swalOptions]="{ showConfirmButton: false, width: 300 }">
+  <swal
+    #signInSwal
+    [swalOptions]="{ showConfirmButton: false, width: 300, heightAuto: false }"
+  >
     <div *swalPortal="swalTargets.content">
       <app-sign-in [self]="signInSwal"></app-sign-in>
     </div>

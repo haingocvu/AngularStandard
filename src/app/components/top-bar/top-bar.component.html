@@ -12,7 +12,10 @@
       <mat-icon>card_giftcard</mat-icon>
     </button>
   </div>
-  <swal #giftBoxSwal [swalOptions]="{ showConfirmButton: false, width: 300 }">
+  <swal
+    #giftBoxSwal
+    [swalOptions]="{ showConfirmButton: false, width: 300, heightAuto: false }"
+  >
     <div *swalPortal="swalTargets.content">
       <app-gift-box [self]="giftBoxSwal"></app-gift-box>
     </div>
