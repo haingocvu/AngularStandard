@@ -40,12 +40,10 @@ textarea {
 }
 
 .content {
-  width: 100%;
+  background: url("../assets/images/back_ground_1.png") no-repeat;
+  width: 100vw;
   height: 100vh;
-  background: url("../assets/images/back_ground_1.png") no - repeat;
-  background-size: cover;
-  color: white;
-  text-align: center;
+  background-size: 100% 100%;
 }
 
 .app-title {
