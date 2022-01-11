@@ -19,7 +19,7 @@ import { MessageService } from '@app/services/message/message.service';
 import { toDateTimeString } from '@app/utils/datetime.util';
 import { getCustomerInfoReset } from '@app/store/actions/customerInfo.actions';
 
-import { turnsDataSelector } from '@app/store/selectors/turns.selector';
+import { remainingTurnsSelector } from '@app/store/selectors/combine.selector';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -60,8 +60,8 @@ export class FooterComponent implements OnInit, AfterViewInit {
       this.spinRawData = data;
     });
 
-    this.store.select(turnsDataSelector).subscribe((turns) => {
-      this.remainingTurns = turns;
+    this.store.select(remainingTurnsSelector).subscribe((turns) => {
+      this.remainingTurns = turns || 0;
     });
   }
   ngAfterViewInit(): void {

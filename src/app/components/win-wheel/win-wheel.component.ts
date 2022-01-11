@@ -20,7 +20,7 @@ import { ICustomerReducerState } from '@app/interfaces/customerInfo.interface';
 import { MessageService } from '@app/services/message/message.service';
 import { MatDialog } from '@angular/material/dialog';
 
-import { setTurnCount } from '@app/store/actions/turns.actions';
+import { setTurnCount } from '@app/store/actions/combine.actions';
 
 declare let Winwheel: any;
 

@@ -19,7 +19,7 @@ import { ICustomerInfo } from '@app/interfaces/customerInfo.interface';
 import { customerInfoDataSelector } from '@app/store/selectors/customerInfo.selector';
 import { saveLoginInfo } from '@app/store/actions/customerInfo.actions';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
-import { setTurnCount } from '@app/store/actions/turns.actions';
+import { setTurnCount } from '@app/store/actions/combine.actions';
 
 @Component({
   selector: 'app-sign-in',
