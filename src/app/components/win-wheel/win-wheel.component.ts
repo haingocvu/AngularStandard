@@ -45,7 +45,6 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
     this.winWheelData$.subscribe((data) => {
       this.winWheelRawData = data;
       this.setUpWinWheel();
-      console.log(this.winWheelRawData);
     });
     this.spinData$.subscribe((data) => {
       this.spinRawData = data;
@@ -90,8 +89,14 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
   setUpWinWheel() {
     if (!this.winWheelRawData?.isLoading && this.winWheelRawData?.data) {
       for (let i = 0; i < this.winWheelRawData.data.spinSegments.length; i++) {
-        const { id, color, segmentContent, obtainContent, contentColor } =
-          this.winWheelRawData.data.spinSegments[i];
+        const {
+          id,
+          color,
+          segmentContent,
+          obtainContent,
+          contentColor,
+          contentSize,
+        } = this.winWheelRawData.data.spinSegments[i];
         this.theWheel.addSegment(
           {
             id,
@@ -100,6 +105,7 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
             text: segmentContent,
             obtainContent,
             textFillStyle: contentColor,
+            textFontSize: contentSize,
           },
           i + 1
         );

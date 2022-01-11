@@ -14,6 +14,7 @@ export interface ISegment {
   color: string;
   contentColor: string;
   type: string;
+  contentSize: number;
 }
 
 export interface IRemainingRewards {
