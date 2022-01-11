@@ -94,7 +94,7 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
   wheelSpinning = false;
   winningSegment: string = '';
   rewardType: string = '';
-  audio = new Audio('../../../assets/media/tick.mp3');
+  audio = new Audio('assets/media/tick.mp3');
 
   setUpWinWheel() {
     if (!this.winWheelRawData?.isLoading && this.winWheelRawData?.data) {
