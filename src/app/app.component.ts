@@ -28,7 +28,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.iconReg.addSvgIcon(
       'giftBox',
       this.sanitizer.bypassSecurityTrustResourceUrl(
-        '../assets/images/giftbox.svg'
+        './assets/images/giftbox.svg'
       )
     );
     this.winWheelData$ = this.store.select(winWheelDataSelector);
