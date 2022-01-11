@@ -21,7 +21,7 @@
   <div class="pb-4">
     <span class="reward-item-right fs-18 mr-2 text-upper-case">Còn</span>
     <span class="reward-item-left fs-18 ml-2 mr-2">{{
-      winWheelRawData?.data?.remainingRewards?.totalQuantity
+      remainingRewards?.totalQuantity
     }}</span>
     <span class="reward-item-right fs-18 ml-2">món quà</span>
   </div>
@@ -30,9 +30,7 @@
       class="reward-item"
       fxLayout="row"
       fxLayoutAlign="center center"
-      *ngFor="
-        let rewardItem of winWheelRawData?.data?.remainingRewards?.details
-      "
+      *ngFor="let rewardItem of remainingRewards?.details"
     >
       <span class="reward-item-left mr-2">{{ rewardItem.quantity }}</span>
       <span class="reward-item-right ml-2">{{ rewardItem.reward }}</span>

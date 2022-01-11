@@ -19,7 +19,11 @@ import { MessageService } from '@app/services/message/message.service';
 import { toDateTimeString } from '@app/utils/datetime.util';
 import { getCustomerInfoReset } from '@app/store/actions/customerInfo.actions';
 
-import { remainingTurnsSelector } from '@app/store/selectors/combine.selector';
+import {
+  remainingTurnsSelector,
+  remainingRewardSelector,
+} from '@app/store/selectors/combine.selector';
+import { IRemainingRewards } from '@app/interfaces/win-wheel.interface';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -37,6 +41,8 @@ export class FooterComponent implements OnInit, AfterViewInit {
   spinData$: Observable<IGenericReducerState<ISpinResult>>;
   spinRawData: IGenericReducerState<ISpinResult> | null = null;
   remainingTurns: number = 0;
+  // @ts-ignore
+  remainingRewards: IRemainingRewards = null;
 
   constructor(
     private store: Store<IStoreState>,
@@ -62,6 +68,11 @@ export class FooterComponent implements OnInit, AfterViewInit {
 
     this.store.select(remainingTurnsSelector).subscribe((turns) => {
       this.remainingTurns = turns || 0;
+    });
+
+    this.store.select(remainingRewardSelector).subscribe((remainingRewards) => {
+      // @ts-ignore
+      this.remainingRewards = remainingRewards;
     });
   }
   ngAfterViewInit(): void {

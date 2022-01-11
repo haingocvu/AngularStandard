@@ -1,6 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { setTurnCount } from '@app/store/actions/combine.actions';
+import {
+  setTurnCount,
+  setRemainingRewards,
+} from '@app/store/actions/combine.actions';
 import { ICombineState } from '@app/interfaces/combine.interface';
 
 export const initialState: ICombineState = {
@@ -14,6 +17,10 @@ const _combineReducer = createReducer(
   on(setTurnCount, (state, action) => ({
     ...state,
     remainingTurns: action.payload,
+  })),
+  on(setRemainingRewards, (state, action) => ({
+    ...state,
+    remainingRewards: action.payload,
   }))
 );
 
