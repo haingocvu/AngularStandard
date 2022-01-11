@@ -25,6 +25,8 @@ import {
   setRemainingRewards,
 } from '@app/store/actions/combine.actions';
 
+import { IRemainingRewards } from '@app/interfaces/win-wheel.interface';
+
 declare let Winwheel: any;
 
 @Component({
@@ -57,7 +59,7 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
       if (!isLoading) this.spinner.hide();
       if (!isLoading && spinData) {
         this.store.dispatch(setTurnCount(spinData.remainingTurns));
-        this.store.dispatch(setRemainingRewards(spinData.remainingRewards));
+        this.remainingRewards = spinData.remainingRewards;
         this.showSpinResult();
       }
     });
@@ -79,6 +81,8 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
     });
   }
 
+  // @ts-ignore
+  remainingRewards: IRemainingRewards = null;
   winWheelData$: Observable<IGenericReducerState<IWinWheel>>;
   winWheelRawData: IGenericReducerState<IWinWheel> | null = null;
   spinData$: Observable<IGenericReducerState<ISpinResult>>;
@@ -236,5 +240,9 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
         this.theWheel.startAnimation();
       }
     }
+  }
+
+  updateRemainingRewards() {
+    this.store.dispatch(setRemainingRewards(this.remainingRewards));
   }
 }

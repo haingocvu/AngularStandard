@@ -13,8 +13,14 @@
   </div>
   <swal
     #spinResultSwal
-    [swalOptions]="{ showConfirmButton: false, width: 300, heightAuto: false }"
+    [swalOptions]="{
+      showConfirmButton: false,
+      width: 300,
+      heightAuto: false
+    }"
+    (didClose)="updateRemainingRewards()"
   >
+    >
     <div *swalPortal="swalTargets.content">
       <app-reward-alert
         [self]="spinResultSwal"
