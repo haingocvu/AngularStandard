@@ -3,6 +3,8 @@ import { Store } from '@ngrx/store';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material/icon';
 
 import { getWinWheelData } from '@app/store/actions/win-wheel.actions';
 import { IWinWheel } from '@app/interfaces/win-wheel.interface';
@@ -19,8 +21,16 @@ export class AppComponent implements OnInit, AfterViewInit {
   constructor(
     private store: Store<IStoreState>,
     private spinner: NgxSpinnerService,
-    public dialog: MatDialog // private messageService: MessageService
+    public dialog: MatDialog,
+    private iconReg: MatIconRegistry,
+    private sanitizer: DomSanitizer
   ) {
+    this.iconReg.addSvgIcon(
+      'giftBox',
+      this.sanitizer.bypassSecurityTrustResourceUrl(
+        '../assets/images/giftbox.svg'
+      )
+    );
     this.winWheelData$ = this.store.select(winWheelDataSelector);
     this.winWheelData$.subscribe((data) => {
       const { isLoading, data: wheelData } = data;
