@@ -126,7 +126,6 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
 
   playSound() {
     // Stop and rewind the sound (stops it if already playing).
-    console.log(this.audio);
     this.audio.pause();
     this.audio.currentTime = 0;
 

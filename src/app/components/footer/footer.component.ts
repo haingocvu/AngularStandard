@@ -94,7 +94,6 @@ export class FooterComponent implements OnInit, AfterViewInit {
 
     if (!isLoading && rawData) {
       // spin the wheel using message service
-      console.log('spinning');
       this.messageService.changeMessage(1);
     } else {
       // authentication

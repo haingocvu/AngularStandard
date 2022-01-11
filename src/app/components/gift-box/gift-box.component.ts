@@ -20,7 +20,6 @@ export class GiftBoxComponent implements OnInit {
   ) {
     this.store.select(giftBoxSelector).subscribe((data) => {
       this.giftBox = data;
-      console.log(this.giftBox);
     });
   }
 
