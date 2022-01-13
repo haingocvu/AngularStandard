@@ -44,6 +44,8 @@ import { combineReducer } from '@app/store/reducers/combine.reducer';
 import { HomeComponent } from '@app/pages/home/home.component';
 import { ListCustomerComponent } from '@app/pages/list-customer/list-customer.component';
 import { DataService } from '@app/data.service';
+import { customerRewardReducer } from '@app/store/reducers/customer-reward.reducer';
+import { CustomerRewardEffect } from '@app/store/effects/customer-reward.effect';
 
 @NgModule({
   declarations: [
@@ -74,12 +76,18 @@ import { DataService } from '@app/data.service';
       spinData: spinReducer,
       customerInfoData: customerInfoReducer,
       combineData: combineReducer,
+      customerRewardData: customerRewardReducer,
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
     }),
-    EffectsModule.forRoot([WinWheelEffect, SpinEffect, CustomerInfoEffect]),
+    EffectsModule.forRoot([
+      WinWheelEffect,
+      SpinEffect,
+      CustomerInfoEffect,
+      CustomerRewardEffect,
+    ]),
     NgxSpinnerModule,
     MatButtonModule,
     NgScrollbarModule,

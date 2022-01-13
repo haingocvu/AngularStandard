@@ -3,10 +3,12 @@ import { IGenericReducerState } from '@app/interfaces/general-reducer-state.inte
 import { ISpinResult } from '@app/interfaces/spin.interface';
 import { ICustomerReducerState } from '@app/interfaces/customerInfo.interface';
 import { ICombineState } from '@app/interfaces/combine.interface';
+import { ICustomerReward } from '@app/interfaces/customer-reward.interface';
 
 export interface IStoreState {
   winWheelData: IGenericReducerState<IWinWheel>;
   spinData: IGenericReducerState<ISpinResult>;
   customerInfoData: ICustomerReducerState;
   combineData: ICombineState;
+  customerRewardData: IGenericReducerState<Array<ICustomerReward>>;
 }

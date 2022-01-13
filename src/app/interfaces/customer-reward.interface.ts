@@ -1,4 +1,4 @@
-export interface CustomerReward {
+export interface ICustomerReward {
   id: number;
   name: string;
   email: string;
