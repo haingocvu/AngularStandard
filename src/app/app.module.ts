@@ -16,6 +16,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
@@ -32,16 +33,17 @@ import { spinReducer } from '@app/store/reducers/spin.reducer';
 import { customerInfoReducer } from '@app/store/reducers/customerInfo.reducer';
 import { CustomerInfoEffect } from '@app/store/effects/customerInfo.effect';
 import { FooterComponent } from '@app/components/footer/footer.component';
-import { SignInComponent } from './components/sign-in/sign-in.component';
-import { RulesComponent } from './components/rules/rules.component';
+import { SignInComponent } from '@app/components/sign-in/sign-in.component';
+import { RulesComponent } from '@app/components/rules/rules.component';
 
 import { SafeHtmlPipe } from '@app/pipes/safe-html.pipe';
-import { RewardAlertComponent } from './components/reward-alert/reward-alert.component';
-import { GiftBoxComponent } from './components/gift-box/gift-box.component';
+import { RewardAlertComponent } from '@app/components/reward-alert/reward-alert.component';
+import { GiftBoxComponent } from '@app/components/gift-box/gift-box.component';
 
 import { combineReducer } from '@app/store/reducers/combine.reducer';
-import { HomeComponent } from './pages/home/home.component';
-import { ListCustomerComponent } from './pages/list-customer/list-customer.component';
+import { HomeComponent } from '@app/pages/home/home.component';
+import { ListCustomerComponent } from '@app/pages/list-customer/list-customer.component';
+import { DataService } from '@app/data.service';
 
 @NgModule({
   declarations: [
@@ -85,6 +87,7 @@ import { ListCustomerComponent } from './pages/list-customer/list-customer.compo
     MatInputModule,
     ReactiveFormsModule,
     SweetAlert2Module.forRoot(),
+    HttpClientInMemoryWebApiModule.forRoot(DataService),
   ],
   providers: [
     {
