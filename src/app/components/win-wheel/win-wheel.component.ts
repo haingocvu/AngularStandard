@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { HttpHeaders } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SwalComponent, SwalPortalTargets } from '@sweetalert2/ngx-sweetalert2';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 import { IWinWheel } from '@app/interfaces/win-wheel.interface';
 import { IStoreState } from '@app/interfaces/store.interface';
@@ -43,8 +44,11 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
     private spinner: NgxSpinnerService,
     private messageService: MessageService,
     public dialog: MatDialog,
-    public readonly swalTargets: SwalPortalTargets
+    public readonly swalTargets: SwalPortalTargets,
+    private deviceService: DeviceDetectorService
   ) {
+    // @ts-ignore
+    this.deviceInfo = this.deviceService.getDeviceInfo();
     this.winWheelData$ = this.store.select(winWheelDataSelector);
     this.spinData$ = this.store.select(spinDataSelector);
     this.winWheelData$.subscribe((data) => {
@@ -94,6 +98,7 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
   wheelSpinning = false;
   winningSegment: string = '';
   rewardType: string = '';
+  deviceInfo = null;
   audio = new Audio('assets/media/tick.mp3');
 
   setUpWinWheel() {
@@ -133,7 +138,7 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
     this.audio.play();
   }
   ngAfterViewInit(): void {
-    this.theWheel = new Winwheel({
+    const config = {
       outerRadius: 151, // Use these three properties to
       innerRadius: 34, // Set inner radius to make wheel hollow.
       centerX: 199.5, // correctly position the wheel
@@ -150,9 +155,14 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
         duration: 5,
         spins: 8,
         callbackFinished: this.alertPrize.bind(this),
-        callbackSound: () => this.playSound(), // Specify function to call when sound is to be triggered
       },
-    });
+    };
+    // @ts-ignore
+    if (this.deviceInfo?.os !== 'iOS' && this.deviceInfo?.os !== 'Mac') {
+      // @ts-ignore
+      config.animation['callbackSound'] = () => this.playSound();
+    }
+    this.theWheel = new Winwheel(config);
   }
 
   ngOnInit(): void {}
@@ -222,7 +232,7 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
       const segmentIndex = this.winWheelRawData?.data?.spinSegments.findIndex(
         (value) => value.id === obtainSpinSegmentId
       );
-      if (segmentIndex && segmentIndex >= 0) {
+      if (segmentIndex !== undefined && segmentIndex >= 0) {
         // Get random angle inside specified segment of the wheel.
         let stopAt = this.theWheel.getRandomForSegment(segmentIndex + 1);
         this.winningSegment =
