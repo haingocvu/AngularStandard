@@ -23,7 +23,7 @@ export class CustomerRewardService {
       .set('query', query)
       .set('sort', sort);
     return this.http.get<IHttpResult<Array<ICustomerReward>>>(
-      'api/list-customer/',
+      'api/listCustomer',
       {
         params,
       }

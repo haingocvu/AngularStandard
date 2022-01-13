@@ -95,7 +95,9 @@ import { CustomerRewardEffect } from '@app/store/effects/customer-reward.effect'
     MatInputModule,
     ReactiveFormsModule,
     SweetAlert2Module.forRoot(),
-    HttpClientInMemoryWebApiModule.forRoot(DataService),
+    HttpClientInMemoryWebApiModule.forRoot(DataService, {
+      dataEncapsulation: false,
+    }),
   ],
   providers: [
     {

@@ -9,7 +9,7 @@ export class DataService implements InMemoryDbService {
 
   createDb() {
     return {
-      'list-customer': [
+      listCustomer: [
         {
           id: 1,
           name: 'Seaman Cap',
