@@ -16,7 +16,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
@@ -43,7 +42,6 @@ import { GiftBoxComponent } from '@app/components/gift-box/gift-box.component';
 import { combineReducer } from '@app/store/reducers/combine.reducer';
 import { HomeComponent } from '@app/pages/home/home.component';
 import { ListCustomerComponent } from '@app/pages/list-customer/list-customer.component';
-import { DataService } from '@app/data.service';
 import { customerRewardReducer } from '@app/store/reducers/customer-reward.reducer';
 import { CustomerRewardEffect } from '@app/store/effects/customer-reward.effect';
 
@@ -95,9 +93,6 @@ import { CustomerRewardEffect } from '@app/store/effects/customer-reward.effect'
     MatInputModule,
     ReactiveFormsModule,
     SweetAlert2Module.forRoot(),
-    HttpClientInMemoryWebApiModule.forRoot(DataService, {
-      dataEncapsulation: false,
-    }),
   ],
   providers: [
     {
