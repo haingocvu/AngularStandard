@@ -11,23 +11,4 @@
   }
 </style>
 
-<div class="content" fxLayout="column" fxLayoutAlign="center" fxFlexFill>
-  <div fxFlex="5" class="sec1">
-    <app-top-bar></app-top-bar>
-  </div>
-  <div fxFlex="55" class="sec2">
-    <app-win-wheel [hidden]="!shouldShowWinWheelComponent"></app-win-wheel>
-  </div>
-  <div fxFlex="40" fxLayout="column" fxLayoutAlign="center center" class="sec3">
-    <app-footer></app-footer>
-  </div>
-  <ngx-spinner
-    [fullScreen]="false"
-    type="ball-clip-rotate-multiple"
-    size="medium"
-  >
-    <p class="loading">Chờ xíu xiu thôi...</p>
-  </ngx-spinner>
-</div>
-
 <router-outlet></router-outlet>

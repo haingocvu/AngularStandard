@@ -40,6 +40,8 @@ import { RewardAlertComponent } from './components/reward-alert/reward-alert.com
 import { GiftBoxComponent } from './components/gift-box/gift-box.component';
 
 import { combineReducer } from '@app/store/reducers/combine.reducer';
+import { HomeComponent } from './pages/home/home.component';
+import { ListCustomerComponent } from './pages/list-customer/list-customer.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import { combineReducer } from '@app/store/reducers/combine.reducer';
     SafeHtmlPipe,
     RewardAlertComponent,
     GiftBoxComponent,
+    HomeComponent,
+    ListCustomerComponent,
   ],
   imports: [
     BrowserModule,
