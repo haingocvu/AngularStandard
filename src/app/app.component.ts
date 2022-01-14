@@ -13,9 +13,7 @@ export class AppComponent implements OnInit {
   ) {
     this.iconReg.addSvgIcon(
       'giftBox',
-      this.sanitizer.bypassSecurityTrustResourceUrl(
-        './assets/images/giftbox.svg'
-      )
+      this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/giftbox.svg')
     );
   }
 
