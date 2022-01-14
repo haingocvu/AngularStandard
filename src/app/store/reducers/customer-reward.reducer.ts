@@ -23,7 +23,6 @@ const _customerRewardReducer = createReducer(
     isLoading: true,
   })),
   on(getCustomerRewardListSuccess, (state, action) => {
-    debugger;
     return {
       ...state,
       isLoading: initialState.isLoading,

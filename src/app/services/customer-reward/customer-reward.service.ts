@@ -16,13 +16,15 @@ export class CustomerRewardService {
   //   pageSize: number,
   //   pageNum: number,
   //   query: string | undefined = '',
-  //   sort: string | undefined = 'asc'
+  //   sortActive: string | undefined = 'name',
+  //   sortDirection: string | undefined = 'desc'
   // ): Observable<IHttpResult<Array<ICustomerReward>>> {
   //   let params = new HttpParams()
   //     .set('pageSize', pageSize)
   //     .set('pageNum', pageNum)
   //     .set('query', query)
-  //     .set('sort', sort);
+  //     .set('sortActive', sortActive)
+  //     .set('sortDirection', sortDirection);
   //   return this.http.get<IHttpResult<Array<ICustomerReward>>>(
   //     'api/listCustomer',
   //     {
@@ -36,7 +38,8 @@ export class CustomerRewardService {
     pageSize: number,
     pageNum: number,
     query: string | undefined = '',
-    sort: string | undefined = 'asc'
+    sortActive: string | undefined = 'name',
+    sortDirection: string | undefined = 'desc'
   ): Observable<IHttpResult<Array<ICustomerReward>>> {
     return of({
       status: 'SUCCESS',

@@ -34,7 +34,6 @@ export class CustomerRewardEffect {
           .pipe(
             map(
               (customerRewardDataRes: IHttpResult<Array<ICustomerReward>>) => {
-                debugger;
                 return getCustomerRewardListSuccess(
                   parseResponse(customerRewardDataRes)
                 );

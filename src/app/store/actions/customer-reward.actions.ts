@@ -14,7 +14,8 @@ export const getCustomerRewardList = createAction(
     pageSize: number;
     pageNum: number;
     query: string | undefined;
-    sort: string | undefined;
+    sortActive: string | undefined;
+    sortDirection: string | undefined;
   }) => ({
     payload,
   })
