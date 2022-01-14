@@ -94,7 +94,6 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
   customerInfo$: Observable<ICustomerReducerState>;
   customerInfoRawData: ICustomerReducerState | null = null;
   theWheel: any;
-  wheelPower = 0;
   wheelSpinning = false;
   winningSegment: string = '';
   rewardType: string = '';
@@ -152,8 +151,8 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
       segments: [],
       animation: {
         type: 'spinToStop',
-        duration: 5,
-        spins: 8,
+        duration: 10,
+        spins: 6,
         callbackFinished: this.alertPrize.bind(this),
       },
     };
@@ -194,13 +193,6 @@ export class WinWheelComponent implements OnInit, AfterViewInit {
       ? this.spinRawData?.data?.remainingTurns
       : this.customerInfoRawData?.data?.remainingTurns;
     if (remainingTurns && !this.wheelSpinning) {
-      if (this.wheelPower === 1) {
-        this.theWheel.animation.spins = 3;
-      } else if (this.wheelPower === 2) {
-        this.theWheel.animation.spins = 8;
-      } else if (this.wheelPower === 3) {
-        this.theWheel.animation.spins = 15;
-      }
       this.store.dispatch(spinTheWheelReset());
       this.store.dispatch(
         spinTheWheel({
